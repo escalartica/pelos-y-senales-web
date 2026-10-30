@@ -1,0 +1,16 @@
+# dependencias y compilación
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel y variables de entorno (nunca se suben las claves)
+.vercel
+.env*
+!.env.example
+
+# sistema y temporales
+.DS_Store
+_*
+web/
