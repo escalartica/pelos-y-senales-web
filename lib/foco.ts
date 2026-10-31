@@ -5,7 +5,7 @@
 // Las fotos nuevas que se suban sin medir usan CARA_DEFECTO, pensada para un retrato vertical
 // con el perro centrado.
 
-type Caja = { cabeza: [number, number]; cara: [number, number]; x?: number };
+type Caja = { cabeza: [number, number]; cara: [number, number]; x?: number; r?: number }; // r = ancho/alto de la foto si no es 2:3
 
 const FOCO: Record<string, Caja> = {
   "6285": { cabeza: [20, 95], cara: [28, 85] }, // Barry
@@ -21,14 +21,17 @@ const FOCO: Record<string, Caja> = {
   "6933": { cabeza: [30, 82], cara: [33, 80] },
   "6428": { cabeza: [10, 98], cara: [10, 40] }, // cuerpo entero
   "6596": { cabeza: [8, 95], cara: [38, 68] }, // cuerpo entero
+  mirin: { cabeza: [13, 72], cara: [18, 70], x: 60, r: 524 / 611 },
+  "soja-negra": { cabeza: [21, 82], cara: [25, 80], r: 524 / 610 },
+  matcha: { cabeza: [18, 72], cara: [22, 70], x: 42, r: 524 / 610 },
 };
 const CARA_DEFECTO: Caja = { cabeza: [18, 88], cara: [25, 80] };
 
 /** Proporción ancho/alto de los retratos de la sesión (1067 × 1600). */
-const FOTO = 2 / 3;
+const FOTO_STD = 2 / 3;
 
 function cajaDe(src: string | undefined): Caja {
-  const k = src?.match(/4e6a(\d{4})/i)?.[1];
+  const k = src?.match(/\/(?:4e6a)?([^/.]+)\.(?:jpe?g|png|webp)$/i)?.[1]?.toLowerCase();
   return (k && FOCO[k]) || CARA_DEFECTO;
 }
 
@@ -39,6 +42,7 @@ function cajaDe(src: string | undefined): Caja {
 export function foco(src: string | undefined, caja = 4 / 5): string {
   const c = cajaDe(src);
   const x = c.x ?? 50;
+  const FOTO = c.r ?? FOTO_STD;
   if (caja <= FOTO) return `${x}% 50%`; // la caja es más estrecha que la foto: no se recorta en vertical
   const v = FOTO / caja; // fracción de la altura que se ve
   const [a, b] = (c.cabeza[1] - c.cabeza[0]) / 100 <= v ? c.cabeza : c.cara;

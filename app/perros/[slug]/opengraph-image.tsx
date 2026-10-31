@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { getCatalog, getDogIn } from "@/lib/catalog";
 import { protOf, EST } from "@/lib/data";
 import { kv } from "@/lib/kv";
+import { foco } from "@/lib/foco";
 
 // Imagen que sale al compartir una ficha (WhatsApp, Instagram, Facebook…).
 // El retrato va entero en un panel 2:3, con la misma proporción que la foto: así nunca se corta la cara.
@@ -49,7 +50,7 @@ export default async function OG({ params }: { params: Promise<{ slug: string }>
     (
       <div style={{ width: "100%", height: "100%", display: "flex", background: "#F4ECDC", fontFamily: "Manrope", color: "#161616" }}>
         <div style={{ width: 420, height: 630, display: "flex", background: "#F2A93B", borderRight: "6px solid #161616" }}>
-          {foto ? <img src={foto} width={420} height={630} style={{ width: 420, height: 630, objectFit: "cover" }} /> : null}
+          {foto ? <img src={foto} width={420} height={630} style={{ width: 420, height: 630, objectFit: "cover", objectPosition: foco(d?.photo, 420 / 630) }} /> : null}
         </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "56px 64px 52px" }}>
           <img src={logoUrl} height={92} style={{ height: 92, width: 218 }} />
