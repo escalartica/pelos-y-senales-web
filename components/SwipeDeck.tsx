@@ -20,7 +20,7 @@ function Card({ d, i, onDecide, top, life }: { d: Dog; i: number; onDecide: (yes
   useEffect(() => { if (!top) return; const h = (ev: CustomEvent) => { setGone(ev.detail ? "r" : "l"); setTimeout(() => onDecide(ev.detail), 380); }; window.addEventListener("pys:decide", h as EventListener); return () => window.removeEventListener("pys:decide", h as EventListener); }, [top, onDecide]);
   return (
     <article ref={ref} className={`dcard${gone ? ` gone-${gone}` : ""}`} style={{ transform: `translateY(${-i * 14}px) scale(${1 - i * .05})`, zIndex: 10 - i }} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}>
-      <div style={{ position: "relative", flex: 1, display: "flex", minHeight: 0 }}><DogArt d={d} sizes="380px" />{o && <span className="afftag">Encaja en {o.ok} de {o.tot}</span>}<span className="stamp si">♥ Guardar</span><span className="stamp no">Pasar</span></div>
+      <div className="dart"><DogArt d={d} sizes="380px" ratio={5 / 6} />{o && <span className="afftag">Encaja en {o.ok} de {o.tot}</span>}<span className="stamp si">♥ Guardar</span><span className="stamp no">Pasar</span></div>
       <div className="b"><div className="name"><b>{d.n}</b><small>{d.edadTxt.replace(/ \(.*\)/, "")} · {d.tam}</small></div><div className="loc">{[p.ciudad, p.n].filter(Boolean).join(" · ")}</div><div className="tags">{d.rasgos.map((t) => <span key={t}>{t}</span>)}</div>{o && <div className="why">{o.items.slice(0, 2).map((x, k) => <span key={k} className={x.t === "w" ? "w" : ""}>{x.x}</span>)}</div>}</div>
     </article>
   );

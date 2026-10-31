@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { CONV_TXT, ACT_TXT, protOf } from "@/lib/data";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 import DogArt from "@/components/DogArt";
+import { foco } from "@/lib/foco";
 import DogCard from "@/components/DogCard";
 import FavButton from "@/components/FavButton";
 import ShareButton from "@/components/ShareButton";
@@ -20,7 +21,7 @@ export async function generateStaticParams() { return (await getCatalog()).dogs.
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params; const cat = await getCatalog(); const d = getDogIn(cat, slug); if (!d) return {};
   const p = protOf(cat.prot, d.prot);
-  return { title: `${d.n}, ${d.raza.toLowerCase()} en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`, description: d.desc, openGraph: { images: d.photo ? [d.photo] : ["/og.jpg"] } };
+  return { title: `${d.n}, ${d.raza.toLowerCase()} en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`, description: d.desc };
 }
 
 export default async function Ficha({ params }: Props) {
@@ -36,7 +37,7 @@ export default async function Ficha({ params }: Props) {
         <div className="ficha">
           <div className="gallery">
             <DogArt d={d} className="main" sizes="(max-width: 900px) 100vw, 50vw" priority />
-            <div className="thumbs">{d.photo ? <div className="has" aria-hidden="true"><img src={d.photo} alt="" /><span>Retrato</span></div> : <div className="soon"><span>Retrato</span><small>próxima sesión</small></div>}{(d.photos ?? []).slice(0, 2).map((ph) => <div key={ph.src} className="has" aria-hidden="true"><img src={ph.src} alt="" /><span>{ph.cap}</span></div>)}{Array.from({ length: Math.max(0, 2 - (d.photos?.length ?? 0)) }).map((_, i) => <div key={i} className="soon"><span>{i === 0 && !(d.photos?.length) ? "Corriendo" : "Comiendo"}</span><small>próxima sesión</small></div>)}</div>
+            <div className="thumbs">{d.photo ? <div className="has" aria-hidden="true"><img src={d.photo} alt="" style={{ objectPosition: foco(d.photo, 1) }} /><span>Retrato</span></div> : <div className="soon"><span>Retrato</span><small>próxima sesión</small></div>}{(d.photos ?? []).slice(0, 2).map((ph) => <div key={ph.src} className="has" aria-hidden="true"><img src={ph.src} alt="" style={{ objectPosition: foco(ph.src, 1) }} /><span>{ph.cap}</span></div>)}{Array.from({ length: Math.max(0, 2 - (d.photos?.length ?? 0)) }).map((_, i) => <div key={i} className="soon"><span>{i === 0 && !(d.photos?.length) ? "Corriendo" : "Comiendo"}</span><small>próxima sesión</small></div>)}</div>
             {d.provisional && <p className="note" style={{ color: "var(--coral)" }}>Ficha provisional: nombre y datos pendientes de confirmar con la protectora.</p>}<p className="note">Fotografías autorizadas por {p.n}. Ficha revisada el <Upd d={d} />. <Link href="/colabora#contacto">Avisar de un dato desfasado</Link>.</p>
           </div>
           <div className="info">

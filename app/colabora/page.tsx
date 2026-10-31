@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Image from "next/image";
+import { foco } from "@/lib/foco";
 import ContactoForm from "@/components/ContactoForm";
 export const metadata: Metadata = { title: "Colabora", description: "Protectoras, instituciones, veterinarios, educadores, peluquerías, comercios y seis maneras de ayudar." };
 const QUIEN = [
@@ -39,7 +40,7 @@ export default function Colabora() {
       </section>
       <section className="band crema" id="sedes">
         <div className="wrap">
-          <Reveal className="split" style={{ marginBottom: 40 }}><div><span className="eyebrow">Seis maneras de ayudar</span><h2>Tanto si puedes adoptar como si solo puedes compartir.</h2><p className="lead" style={{ marginTop: 14 }}>Más manos en los centros es el segundo objetivo del proyecto. Elige la tuya.</p></div><div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6645.jpg" alt="Pastor alemán con collar naranja y la lengua fuera sobre fondo mostaza, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" /></div></div></Reveal>
+          <Reveal className="split" style={{ marginBottom: 40 }}><div><span className="eyebrow">Seis maneras de ayudar</span><h2>Tanto si puedes adoptar como si solo puedes compartir.</h2><p className="lead" style={{ marginTop: 14 }}>Más manos en los centros es el segundo objetivo del proyecto. Elige la tuya.</p></div><div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6645.jpg" alt="Pastor alemán con collar naranja y la lengua fuera sobre fondo mostaza, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" style={{ objectPosition: foco("/img/lasa/4e6a6645.jpg", 1) }} /></div></div></Reveal>
           <Reveal className="ways">{WAYS.map(([b, p]) => <div key={b} className="way"><b>{b}</b><p>{p}</p></div>)}<div className="way" style={{ background: "var(--tinta)", color: "var(--crema)", borderColor: "var(--tinta)" }}><b>Y una más</b><p style={{ color: "rgba(244,236,220,.75)" }}>Si trabajas en una clínica o una tienda, pide una placa QR de tu zona para el mostrador.</p></div></Reveal>
         </div>
       </section>

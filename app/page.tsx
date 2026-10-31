@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { foco } from "@/lib/foco";
 import Link from "next/link";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 import DogCard from "@/components/DogCard";
@@ -56,7 +57,7 @@ export default async function Home() {
           {destacados.length > 0 && <Reveal className="cards">{destacados.map((d) => <DogCard key={d.id} d={d} />)}</Reveal>}
           {pronto.length > 0 && (<>
             {destacados.length > 0 && <h3 style={{ margin: "40px 0 16px", fontFamily: "var(--f-display)", fontSize: "clamp(22px,2.4vw,30px)" }}>Y muy pronto, con su ficha:</h3>}
-            <Reveal className="soongrid">{pronto.slice(0, destacados.length ? 3 : 6).map((f) => <figure key={f.src}><Image src={f.src} alt={f.alt} width={600} height={750} sizes="(max-width: 760px) 50vw, 33vw" /></figure>)}</Reveal>
+            <Reveal className="soongrid">{pronto.slice(0, destacados.length ? 3 : 6).map((f) => <figure key={f.src}><Image src={f.src} alt={f.alt} width={600} height={750} sizes="(max-width: 760px) 50vw, 33vw" style={{ objectPosition: foco(f.src, 4 / 5) }} /></figure>)}</Reveal>
             <p className="source">Fotografías de nuestra primera sesión. Estamos preparando sus fichas con sus protectoras.</p>
           </>)}
         </div>
@@ -114,7 +115,7 @@ export default async function Home() {
       <section className="band mostaza curve" id="sesion">
         <div className="wrap">
           <Reveal className="split">
-            <div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6428.jpg" alt="Perro blanco y negro sentado sobre fondo mostaza, con la lengua fuera, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" /></div></div>
+            <div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6428.jpg" alt="Perro blanco y negro sentado sobre fondo mostaza, con la lengua fuera, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" style={{ objectPosition: foco("/img/lasa/4e6a6428.jpg", 1) }} /></div></div>
             <div>
               <span className="eyebrow">La sesión</span>
               <h2>Para ellos, la sesión es un juego.</h2>
@@ -144,7 +145,7 @@ export default async function Home() {
         <div className="wrap">
           <Reveal className="split">
             <Zonas />
-            <div className="pic"><Image src="/img/lasa/4e6a6596.jpg" alt="Perro negro y blanco tumbado y sonriente sobre fondo crema, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" /></div>
+            <div className="pic"><Image src="/img/lasa/4e6a6596.jpg" alt="Perro negro y blanco tumbado y sonriente sobre fondo crema, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" style={{ objectPosition: foco("/img/lasa/4e6a6596.jpg", 1) }} /></div>
           </Reveal>
         </div>
       </section>
@@ -216,7 +217,7 @@ export default async function Home() {
                 <div><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="#C9CF58" stroke="#161616" strokeWidth="2.5" /><path d="M10 20h14M12 14h10" fill="none" stroke="#161616" strokeWidth="3" strokeLinecap="round" /></svg><span><b>Solo los datos necesarios</b>Tu consulta va a la protectora del perro, con aviso de privacidad antes de enviarla.</span></div>
               </div>
             </div>
-            <div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6933.jpg" alt="Perro marrón sonriendo a la cámara sobre fondo mostaza, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" /></div></div>
+            <div className="bezel"><div className="pic"><Image src="/img/lasa/4e6a6933.jpg" alt="Perro marrón sonriendo a la cámara sobre fondo mostaza, en la sesión de APAAL" width={1067} height={1600} sizes="(max-width: 860px) 100vw, 50vw" style={{ objectPosition: foco("/img/lasa/4e6a6933.jpg", 1) }} /></div></div>
           </Reveal>
         </div>
       </section>
