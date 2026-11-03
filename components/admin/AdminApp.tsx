@@ -6,9 +6,10 @@ import type { Madrina } from "@/lib/madrinas";
 import type { Catalog } from "@/lib/catalog";
 import { reducirFoto } from "@/lib/perdidos";
 import AvisosAdmin from "./AvisosAdmin";
+import Agenda from "./Agenda";
 
-type Tab = "perros" | "protectoras" | "madrinas" | "perdidos" | "alertas" | "copia";
-const TABS: [Tab, string][] = [["perros", "Perros"], ["protectoras", "Protectoras"], ["madrinas", "Madrinas y padrinos"], ["perdidos", "Perdidos y avistados"], ["alertas", "Alertas por zona"], ["copia", "Copia de seguridad"]];
+type Tab = "agenda" | "perros" | "protectoras" | "madrinas" | "perdidos" | "alertas" | "copia";
+const TABS: [Tab, string][] = [["agenda", "Agenda"], ["perros", "Perros"], ["protectoras", "Protectoras"], ["madrinas", "Madrinas y padrinos"], ["perdidos", "Perdidos y avistados"], ["alertas", "Alertas por zona"], ["copia", "Copia de seguridad"]];
 
 export const slug = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 48) || "nuevo";
 const unico = (base: string, usados: string[]) => { let id = base, i = 2; while (usados.includes(id)) id = `${base}-${i++}`; return id; };
@@ -24,7 +25,7 @@ export async function api(url: string, method = "GET", body?: unknown) {
 
 export default function AdminApp({ fotos }: { fotos: string[] }) {
   const [cat, setCat] = useState<Catalog | null>(null); const [base, setBase] = useState("");
-  const [tab, setTab] = useState<Tab>("perros"); const [msg, setMsg] = useState<{ ok: boolean; t: string } | null>(null);
+  const [tab, setTab] = useState<Tab>("agenda"); const [msg, setMsg] = useState<{ ok: boolean; t: string } | null>(null);
   const [busy, setBusy] = useState(false); const [kv, setKv] = useState(true);
   const load = useCallback(async () => { const j = await api("/api/admin/catalog"); setCat(j.cat); setBase(j.cat.upd || ""); setKv(j.kv); }, []);
   useEffect(() => { load().catch((e) => setMsg({ ok: false, t: e.message })); }, [load]);
@@ -49,6 +50,7 @@ export default function AdminApp({ fotos }: { fotos: string[] }) {
       {msg && <p className={msg.ok ? "adm-ok" : "adm-err"} role="status">{msg.t}</p>}
       {!cat ? <p>Cargando…</p> : (
         <>
+          {tab === "agenda" && <Agenda />}
           {tab === "perros" && <Perros cat={cat} fotos={fotos} busy={busy} save={save} />}
           {tab === "protectoras" && <Protectoras cat={cat} busy={busy} save={save} />}
           {tab === "madrinas" && <Madrinas cat={cat} busy={busy} save={save} />}
@@ -288,13 +290,20 @@ function Alertas() {
 
 /* ---------- Copia ---------- */
 function Copia({ cat }: { cat: Catalog }) {
+  const bajarAgenda = async () => {
+    const j = await api("/api/admin/agenda");
+    const b = new Blob([JSON.stringify({ eventos: j.evs }, null, 2)], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `pelosysenales-agenda-${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href);
+  };
   const bajar = () => { const b = new Blob([JSON.stringify(cat, null, 2)], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = `pelosysenales-copia-${new Date().toISOString().slice(0, 10)}.json`; a.click(); URL.revokeObjectURL(a.href); };
   return (
     <section>
       <div className="adm-bar"><h2>Copia de seguridad</h2></div>
       <p>Descarga un archivo con todos los perros, protectoras y madrinas tal como están ahora. Guárdalo en tu ordenador de vez en cuando.</p>
       <p className="small">{cat.upd ? `Último cambio: ${new Date(cat.upd).toLocaleString("es-ES")}.` : "Todavía no se ha guardado nada desde el panel: la web muestra los datos iniciales."} Además, la web guarda sola las 30 versiones anteriores.</p>
-      <button className="btn" type="button" onClick={bajar}>Descargar copia</button>
+      <div className="adm-acts" style={{ justifyContent: "flex-start" }}>
+        <button className="btn" type="button" onClick={bajar}>Descargar copia</button>
+        <button className="btn ghost" type="button" onClick={bajarAgenda}>Descargar copia de la agenda</button>
+      </div>
     </section>
   );
 }
