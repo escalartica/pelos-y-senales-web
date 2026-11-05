@@ -6,6 +6,6 @@ export const TITULAR = {
   registro: "Solicitud de inscripción en el Registro de Asociaciones en trámite",
   email: "infopelosysenales@gmail.com",
   tel: "+34 635 025 378",
-  web: "pelosysenales.es",
+  web: "pelosyseñales.com",
   actualizado: "30 de octubre de 2026",
 };

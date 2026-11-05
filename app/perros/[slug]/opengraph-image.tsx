@@ -61,7 +61,7 @@ export default async function OG({ params }: { params: Promise<{ slug: string }>
             {donde ? <div style={{ fontSize: 26, marginTop: 10, color: "#4a4a4a" }}>{donde}</div> : null}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 28 }}>
-            <span>pelosysenales.es</span>
+            <span>pelosyseñales.com</span>
             <span style={{ color: "#E8734A" }}>Del match a casa</span>
           </div>
         </div>

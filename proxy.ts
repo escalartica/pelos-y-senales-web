@@ -7,6 +7,10 @@ import type { NextRequest } from "next/server";
 export function proxy(request: NextRequest) {
   const pass = process.env.SITE_PASSWORD;
   if (!pass) return NextResponse.next();
+  // El calendario privado lleva su propia clave en la dirección: Google y el iPhone no saben escribir la contraseña de la web.
+  if (request.nextUrl.pathname.startsWith("/api/calendario/")) return NextResponse.next();
+  // El manifiesto y los iconos de la app del móvil los pide el sistema sin contraseña.
+  if (["/admin/app.webmanifest", "/icon.png", "/apple-icon.png"].includes(request.nextUrl.pathname)) return NextResponse.next();
 
   const user = process.env.SITE_USER || "equipo";
   const header = request.headers.get("authorization") || "";

@@ -5,7 +5,7 @@
 <p align="center"><strong>Del match a casa.</strong> Fotos que encuentran familia a los perros de las protectoras.</p>
 
 <p align="center">
-  <a href="https://pelosysenales.es">pelosysenales.es</a> ·
+  <a href="https://xn--pelosyseales-hhb.com">pelosyseñales.com</a> ·
   <a href="https://www.instagram.com/pelosysenales.es/">@pelosysenales.es</a>
 </p>
 
@@ -16,7 +16,7 @@ Pelos y Señales fotografía a los perros de protectoras y refugios de España c
 Esta es la web del proyecto: catálogo de perros con match por estilo de vida, mapa de protectoras de toda España, tablón de perros perdidos y avistados, y un panel para que el equipo lo gestione todo sin tocar código.
 
 <p align="center">
-  <img src="docs/capturas/inicio.jpg" alt="Portada de pelosysenales.es" width="49%">
+  <img src="docs/capturas/inicio.jpg" alt="Portada de pelosyseñales.com" width="49%">
   <img src="docs/capturas/ficha.jpg" alt="Ficha de Toyota" width="49%">
 </p>
 

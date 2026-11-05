@@ -40,7 +40,7 @@ export function label(x: Aviso) {
 }
 export function fmtFecha(f?: string) { if (!f) return ""; const d = new Date(f); if (isNaN(+d)) return f; return d.toLocaleDateString("es-ES", { day: "numeric", month: "short" }) + " · " + d.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }); }
 export function shareText(x: Aviso) {
-  const url = `${typeof location !== "undefined" ? location.origin : "https://pelosysenales.es"}/perdidos#pa-${x.id}`;
+  const url = `${typeof location !== "undefined" ? location.origin : "https://xn--pelosyseales-hhb.com"}/perdidos#pa-${x.id}`;
   return x.tipo === "perdido"
     ? `SE BUSCA: ${x.nombre || "perro"}, ${TAM[x.tam]}, ${x.color}. Visto por última vez en ${x.lugar} (${x.ciudad}), ${fmtFecha(x.fecha)}. Si lo ves, llama al ${x.tel || "teléfono del aviso"}. ${url}`
     : `PERRO VISTO SUELTO en ${x.lugar} (${x.ciudad}), ${fmtFecha(x.fecha)}: ${TAM[x.tam]}, ${x.color}. ¿Es tuyo o sabes de quién es? ${url}`;

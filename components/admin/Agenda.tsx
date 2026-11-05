@@ -90,8 +90,10 @@ export default function Agenda() {
   const [ocultos, setOcultos] = useState<Tipo[]>([]);
   const [edit, setEdit] = useState<Ev | null>(null);
   const [err, setErr] = useState("");
+  const [cal, setCal] = useState("");
+  const [movil, setMovil] = useState(false);
 
-  const cargar = useCallback(() => api("/api/admin/agenda").then((j) => setEvs(j.evs)).catch((e) => setErr(e.message)), []);
+  const cargar = useCallback(() => api("/api/admin/agenda").then((j) => { setEvs(j.evs); if (j.cal) setCal(j.cal); }).catch((e) => setErr(e.message)), []);
   useEffect(() => { cargar(); }, [cargar]);
 
   const visibles = useMemo(() => (evs || []).filter((e) => !ocultos.includes(e.tipo)), [evs, ocultos]);
@@ -150,8 +152,10 @@ export default function Agenda() {
         <button className="btn" type="button" onClick={() => nuevo(vista === "dia" || ref.slice(0, 7) !== hoy.slice(0, 7) ? ref : hoy)}>+ Nuevo evento</button>
         <button className="btn ghost" type="button" onClick={imprimir}>Imprimir o PDF</button>
         <button className="btn ghost" type="button" onClick={descargarIcs} disabled={!evs?.length}>Descargar calendario (.ics)</button>
+        <button className="btn ghost" type="button" aria-expanded={movil} onClick={() => setMovil((m) => !m)}>Llevar al móvil</button>
       </div>
       {err && <p className="adm-err ag-noprint">{err}</p>}
+      {movil && <EnElMovil cal={cal} />}
 
       <div className="ag-toolbar ag-noprint">
         <div className="chips" role="group" aria-label="Vista">{VISTAS.map(([k, l]) => <button key={k} type="button" className="chip" aria-pressed={vista === k} onClick={() => setVista(k)}>{l}</button>)}</div>
@@ -329,6 +333,48 @@ function VistaAno({ fecha, delDia, irDia, hoy, irMes }: { fecha: string; delDia:
         <div className="ag-box"><h4>Notas</h4><Area label="Notas del año" rows={5} value={plan?.notas} onChange={(v) => cambiar({ notas: v })} /></div>
       </div>
       <div className="ag-leyenda-print">{TIPOS.map((t) => <span key={t.id}><i style={{ background: t.c }} />{t.n}</span>)}</div>
+    </div>
+  );
+}
+
+/* ---------- Llevar la agenda al móvil ---------- */
+function EnElMovil({ cal }: { cal: string }) {
+  const [copiado, setCopiado] = useState(false);
+  const host = typeof location !== "undefined" ? location.host : "pelosyseñales.com";
+  const https = `${typeof location !== "undefined" ? location.origin : "https://xn--pelosyseales-hhb.com"}${cal}`;
+  const webcal = `webcal://${host}${cal}`;
+  const google = `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcal)}`;
+  const copiar = async () => { try { await navigator.clipboard.writeText(https); setCopiado(true); setTimeout(() => setCopiado(false), 2500); } catch { /* sin portapapeles: queda el texto a la vista */ } };
+  return (
+    <div className="ag-movil ag-noprint">
+      <h3>Llevar la agenda al móvil</h3>
+      <p>Dos formas que se pueden usar a la vez: ver los eventos dentro de vuestro calendario de siempre y tener un icono que abre esta agenda como una app.</p>
+      <div className="ag-movil-grid">
+        <div>
+          <h4>1. En Google Calendar o en el Calendario del iPhone</h4>
+          <p>Los eventos aparecen solos y se actualizan cuando cambiáis algo aquí. Allí se ven con un icono por tipo ({TIPOS.map((t) => `${t.i} ${t.n.toLowerCase()}`).join(", ")}). Se crean y se editan aquí.</p>
+          {cal ? (
+            <>
+              <div className="ag-acc">
+                <a className="btn" href={google} target="_blank" rel="noopener noreferrer">Añadir a Google Calendar</a>
+                <a className="btn ghost" href={webcal}>Añadir al iPhone o Mac</a>
+                <button className="btn ghost" type="button" onClick={copiar}>{copiado ? "Copiado" : "Copiar enlace"}</button>
+              </div>
+              <code>{https}</code>
+              <p className="ag-nota">Este enlace es privado: quien lo tenga puede ver la agenda. Si algún día se filtra, cambiad la contraseña del panel y el enlace antiguo dejará de funcionar. Google tarda unas horas en recoger los cambios; el iPhone, alrededor de una hora.</p>
+            </>
+          ) : <p>Cargando el enlace…</p>}
+        </div>
+        <div>
+          <h4>2. Un icono en la pantalla de inicio</h4>
+          <p>Abre esta agenda a pantalla completa, sin barra del navegador, para escribir en los planificadores desde el móvil.</p>
+          <ol>
+            <li><b>iPhone:</b> abrid {host}/admin en Safari, botón Compartir y «Añadir a pantalla de inicio».</li>
+            <li><b>Android:</b> abrid {host}/admin en Chrome, menú ⋮ e «Instalar aplicación» o «Añadir a pantalla de inicio».</li>
+            <li>La primera vez, al entrar, marcad «Mantener la sesión abierta en este dispositivo» para no tener que escribir la contraseña cada día.</li>
+          </ol>
+        </div>
+      </div>
     </div>
   );
 }

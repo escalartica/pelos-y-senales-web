@@ -6,7 +6,13 @@ import AdminLogin from "@/components/admin/AdminLogin";
 import AdminApp from "@/components/admin/AdminApp";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "Panel de administración", robots: { index: false, follow: false } };
+export const metadata: Metadata = {
+  title: "Panel de administración",
+  robots: { index: false, follow: false },
+  // Se puede instalar en el móvil y abre directamente la agenda.
+  manifest: "/admin/app.webmanifest",
+  appleWebApp: { capable: true, title: "Agenda PyS", statusBarStyle: "default" },
+};
 
 function fotosSesion() {
   try { return readdirSync(path.join(process.cwd(), "public/img/lasa")).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort().map((f) => `/img/lasa/${f}`); } catch { return []; }

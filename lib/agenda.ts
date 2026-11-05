@@ -7,13 +7,13 @@
  */
 
 export const TIPOS = [
-  { id: "sesion", n: "Sesión de fotos", c: "#F2A93B" },
-  { id: "visita", n: "Visita a protectora", c: "#3F7D5C" },
-  { id: "reunion", n: "Reunión", c: "#3B5F8A" },
-  { id: "evento", n: "Evento", c: "#E8734A" },
-  { id: "redes", n: "Publicación en redes", c: "#8E5BB5" },
-  { id: "adopcion", n: "Adopción o entrega", c: "#C9CF58" },
-  { id: "otro", n: "Otro", c: "#7A7266" },
+  { id: "sesion", n: "Sesión de fotos", c: "#F2A93B", i: "📸" },
+  { id: "visita", n: "Visita a protectora", c: "#3F7D5C", i: "🐾" },
+  { id: "reunion", n: "Reunión", c: "#3B5F8A", i: "🤝" },
+  { id: "evento", n: "Evento", c: "#E8734A", i: "🎉" },
+  { id: "redes", n: "Publicación en redes", c: "#8E5BB5", i: "📱" },
+  { id: "adopcion", n: "Adopción o entrega", c: "#C9CF58", i: "🏡" },
+  { id: "otro", n: "Otro", c: "#7A7266", i: "📌" },
 ] as const;
 export type Tipo = (typeof TIPOS)[number]["id"];
 export const tipoDe = (t: string) => TIPOS.find((x) => x.id === t) ?? TIPOS[TIPOS.length - 1];
@@ -109,9 +109,22 @@ export function limpiarPlan(x: unknown): Plan {
 
 /* ---------- Exportar a calendario (.ics) ---------- */
 const icsTxt = (s: string) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/[,;]/g, (m) => "\\" + m);
+/** Las líneas de un .ics no deben pasar de 75 bytes: las largas se parten y siguen con un espacio. */
+function plegar(linea: string) {
+  const enc = new TextEncoder(); if (enc.encode(linea).length <= 74) return linea;
+  const out: string[] = []; let cur = "", n = 0, lim = 74;
+  for (const ch of linea) { const b = enc.encode(ch).length; if (n + b > lim) { out.push(cur); cur = ""; n = 0; lim = 73; } cur += ch; n += b; }
+  out.push(cur); return out.join("\r\n ");
+}
 export function aIcs(evs: Ev[]) {
   const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
-  const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Pelos y Señales//Agenda//ES", "CALSCALE:GREGORIAN", "X-WR-CALNAME:Agenda Pelos y Señales", "X-WR-TIMEZONE:Europe/Madrid"];
+  const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Pelos y Señales//Agenda//ES", "CALSCALE:GREGORIAN", "X-WR-CALNAME:Agenda Pelos y Señales", "X-WR-TIMEZONE:Europe/Madrid",
+    // Para quien se suscribe: pedir cambios cada hora (Apple y Outlook lo respetan; Google decide su propio ritmo).
+    "REFRESH-INTERVAL;VALUE=DURATION:PT1H", "X-PUBLISHED-TTL:PT1H",
+    "BEGIN:VTIMEZONE", "TZID:Europe/Madrid",
+    "BEGIN:DAYLIGHT", "TZOFFSETFROM:+0100", "TZOFFSETTO:+0200", "TZNAME:CEST", "DTSTART:19700329T020000", "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU", "END:DAYLIGHT",
+    "BEGIN:STANDARD", "TZOFFSETFROM:+0200", "TZOFFSETTO:+0100", "TZNAME:CET", "DTSTART:19701025T030000", "RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU", "END:STANDARD",
+    "END:VTIMEZONE"];
   for (const e of evs) {
     const d = e.fecha.replace(/-/g, "");
     L.push("BEGIN:VEVENT", `UID:${e.id}@pelosysenales.es`, `DTSTAMP:${stamp}`);
@@ -122,11 +135,12 @@ export function aIcs(evs: Ev[]) {
     } else {
       L.push(`DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${addDays(e.hasta || e.fecha, 1).replace(/-/g, "")}`);
     }
-    L.push(`SUMMARY:${icsTxt(e.titulo)}`, `CATEGORIES:${icsTxt(tipoDe(e.tipo).n)}`);
+    // Google y el iPhone pintan todo el calendario de un solo color: el icono distingue el tipo de un vistazo.
+    L.push(`SUMMARY:${icsTxt(`${tipoDe(e.tipo).i} ${e.titulo}`)}`, `CATEGORIES:${icsTxt(tipoDe(e.tipo).n)}`);
     if (e.lugar) L.push(`LOCATION:${icsTxt(e.lugar)}`);
     if (e.notas) L.push(`DESCRIPTION:${icsTxt(e.notas)}`);
     L.push("END:VEVENT");
   }
   L.push("END:VCALENDAR");
-  return L.join("\r\n");
+  return L.map(plegar).join("\r\n");
 }

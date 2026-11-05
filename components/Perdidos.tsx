@@ -19,7 +19,7 @@ export function printPoster(html: string) {
 }
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
 export function posterLost(x: Aviso) {
-  return `<div class="pp"><div><div class="big">SE BUSCA</div><div class="n">${esc(x.nombre)}</div></div><div><div class="im">${x.foto ? `<img src="${x.foto}" alt="">` : ""}</div><p>${esc(x.sexo)} · ${TAM[x.tam]} · ${esc(x.color)}${x.collar ? " · " + esc(x.collar) : ""}</p><p>Visto por última vez en <b>${esc(x.lugar)}</b> (${esc(x.ciudad)}), ${fmtFecha(x.fecha)}.</p>${x.caracter ? `<p>${esc(x.caracter)}. No lo persigas: avisa.</p>` : ""}</div><div><div class="tel">${esc(x.tel)}</div><div class="foot">pelosysenales.es/perdidos</div></div></div>`;
+  return `<div class="pp"><div><div class="big">SE BUSCA</div><div class="n">${esc(x.nombre)}</div></div><div><div class="im">${x.foto ? `<img src="${x.foto}" alt="">` : ""}</div><p>${esc(x.sexo)} · ${TAM[x.tam]} · ${esc(x.color)}${x.collar ? " · " + esc(x.collar) : ""}</p><p>Visto por última vez en <b>${esc(x.lugar)}</b> (${esc(x.ciudad)}), ${fmtFecha(x.fecha)}.</p>${x.caracter ? `<p>${esc(x.caracter)}. No lo persigas: avisa.</p>` : ""}</div><div><div class="tel">${esc(x.tel)}</div><div class="foot">pelosyseñales.com/perdidos</div></div></div>`;
 }
 
 function share(x: Aviso) {
@@ -188,7 +188,7 @@ export default function Perdidos() {
                   <li><b>Redes y grupos locales</b> de perdidos de tu ciudad, con la misma foto y el enlace a esta ficha.</li>
                   <li><b>Cuidado con quien pide dinero</b> por «información» antes de ver al perro: suele ser una estafa.</li>
                 </ol></div>
-              <div className="poster"><div className="big">SE BUSCA</div><div className="im">{lpFoto && <img src={lpFoto} alt="" />}</div><p><b>{lp.nombre || "Tu perro"}</b></p><p>{lp.color || lp.lugar ? `${lp.color}${lp.color && lp.lugar ? " · " : ""}${lp.lugar ? "Visto por última vez en " + lp.lugar : ""}` : "Rellena la ficha y el cartel se compone solo."}</p><div className="tel">{lp.tel}</div><p className="small" style={{ fontSize: 12 }}>pelosysenales.es/perdidos</p></div>
+              <div className="poster"><div className="big">SE BUSCA</div><div className="im">{lpFoto && <img src={lpFoto} alt="" />}</div><p><b>{lp.nombre || "Tu perro"}</b></p><p>{lp.color || lp.lugar ? `${lp.color}${lp.color && lp.lugar ? " · " : ""}${lp.lugar ? "Visto por última vez en " + lp.lugar : ""}` : "Rellena la ficha y el cartel se compone solo."}</p><div className="tel">{lp.tel}</div><p className="small" style={{ fontSize: 12 }}>pelosyseñales.com/perdidos</p></div>
             </div>
           </div>
         )}

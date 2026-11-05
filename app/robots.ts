@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://pelosysenales.es";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.com";
 // En modo privado (SITE_PASSWORD definido) se pide a los buscadores que no rastreen nada.
 export default function robots(): MetadataRoute.Robots {
   if (process.env.SITE_PASSWORD) return { rules: { userAgent: "*", disallow: "/" } };

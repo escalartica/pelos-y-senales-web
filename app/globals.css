@@ -1019,3 +1019,18 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
   body.ag-printing .ag-dias7{grid-template-columns:repeat(7,minmax(0,1fr))}
   body.ag-printing .ag-dia{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
 }
+
+/* ---------- Acceso desde el móvil ---------- */
+.form label.adm-recordar,.adm-recordar{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;line-height:1.35;margin:4px 0 14px;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:500;opacity:1}
+.adm-recordar input{width:18px;height:18px;margin-top:1px;flex:0 0 auto;accent-color:var(--ink,#2B2622)}
+.ag-movil{border:1.5px solid rgba(43,38,34,.14);border-radius:16px;padding:18px 20px;margin:0 0 18px;background:#fff}
+.ag-movil h3{margin:0 0 4px;font-size:1.1rem}
+.ag-movil p{margin:6px 0;font-size:.93rem;line-height:1.45}
+.ag-movil-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:12px}
+.ag-movil-grid>div{min-width:0}
+.ag-movil h4{margin:0 0 6px;font-size:.98rem}
+.ag-movil .ag-acc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.ag-movil ol{margin:6px 0 0;padding-left:20px;font-size:.92rem;line-height:1.5}
+.ag-movil code{display:block;overflow-wrap:anywhere;font-size:.78rem;background:#F5EFE3;border-radius:8px;padding:8px 10px;margin-top:8px}
+.ag-movil .ag-nota{font-size:.82rem;opacity:.75}
+@media (max-width:760px){.ag-movil-grid{grid-template-columns:minmax(0,1fr)}}

@@ -1,19 +1,15 @@
 import { NextResponse } from "next/server";
-import { guardAdmin } from "@/lib/admin";
+import { calToken, guardAdmin } from "@/lib/admin";
 import { kv, kvPipe, kvConfigured } from "@/lib/kv";
-import { CLAVE_RE, limpiarEv, limpiarPlan, type Ev, type Plan } from "@/lib/agenda";
+import { AGENDA_EV, eventosAgenda } from "@/lib/agenda-store";
+import { CLAVE_RE, limpiarEv, limpiarPlan, type Plan } from "@/lib/agenda";
 
 export const dynamic = "force-dynamic";
-const EV = "agenda:ev";
+const EV = AGENDA_EV;
 const PL = (k: string) => `agenda:pl:${k}`;
 const NO_CACHE = { "cache-control": "no-store" };
 
-async function todos(): Promise<Ev[]> {
-  const flat = (await kv<string[]>("HGETALL", EV)) || [];
-  const out: Ev[] = [];
-  for (let i = 1; i < flat.length; i += 2) { try { out.push(JSON.parse(flat[i])); } catch { /* entrada rota: se ignora */ } }
-  return out.sort((a, b) => a.fecha.localeCompare(b.fecha) || (a.hora || "").localeCompare(b.hora || ""));
-}
+const todos = eventosAgenda;
 
 /** GET: todos los eventos. Con ?pl=clave1,clave2 devuelve además esos planificadores. */
 export async function GET(req: Request) {
@@ -25,7 +21,7 @@ export async function GET(req: Request) {
     claves.forEach((k, i) => { try { pl[k] = vals[i] ? JSON.parse(vals[i] as string) : {}; } catch { pl[k] = {}; } });
     return NextResponse.json({ pl }, { headers: NO_CACHE });
   }
-  return NextResponse.json({ evs: await todos(), kv: kvConfigured() }, { headers: NO_CACHE });
+  return NextResponse.json({ evs: await todos(), kv: kvConfigured(), cal: `/api/calendario/${calToken()}/agenda.ics` }, { headers: NO_CACHE });
 }
 
 /** PUT: guarda un evento ({ ev }) o un planificador ({ pl: clave, data }). */

@@ -5,10 +5,12 @@ import { sign, verify } from "./guard";
 
 /**
  * Acceso al panel de administración. La contraseña vive solo en Vercel (variable ADMIN_PASSWORD, mínimo 10 caracteres).
- * Al entrar se guarda una cookie firmada (httpOnly, segura, 12 horas). Si se cambia la contraseña, todas las sesiones caducan.
+ * Al entrar se guarda una cookie firmada (httpOnly, segura, 12 horas; o 30 días si se marca «mantener la sesión en este dispositivo»).
+ * Si se cambia la contraseña, todas las sesiones caducan, y también el enlace privado del calendario.
  */
 export const COOKIE = "pys_adm";
 const HORAS = 12;
+const DIAS_RECORDAR = 30;
 const pass = () => process.env.ADMIN_PASSWORD || "";
 export const adminConfigured = () => pass().length >= 10 || (process.env.NODE_ENV !== "production" && pass().length > 0);
 const huella = () => createHash("sha256").update("pys-admin:" + pass()).digest("hex").slice(0, 16);
@@ -18,13 +20,24 @@ export function passwordOk(input: string) {
   const a = createHash("sha256").update(String(input)).digest(), b = createHash("sha256").update(pass()).digest();
   return timingSafeEqual(a, b);
 }
-export const sessionToken = () => sign({ a: "adm", h: huella() });
+/** Duración de la sesión en horas: 12 por defecto, 30 días si se pide recordar el dispositivo. */
+export const horasSesion = (recordar = false) => (recordar ? DIAS_RECORDAR * 24 : HORAS);
+export const sessionToken = (recordar = false) => sign({ a: "adm", h: huella(), hs: horasSesion(recordar) });
 export const cookieOpts = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "strict" as const, path: "/", maxAge: HORAS * 3600 };
 
 function tokenOk(t?: string) {
   if (!t || !adminConfigured()) return false;
-  const p = verify(t, HORAS / 24);
-  return !!p && p.a === "adm" && p.h === huella();
+  const p = verify(t, DIAS_RECORDAR);
+  if (!p || p.a !== "adm" || p.h !== huella()) return false;
+  const hs = typeof p.hs === "number" ? Math.min(p.hs, DIAS_RECORDAR * 24) : HORAS;
+  return Date.now() - (p.ts as number) <= hs * 3600 * 1000;
+}
+
+/** Clave del enlace privado del calendario (suscripción desde Google Calendar o el iPhone). Cambia si cambia la contraseña. */
+export const calToken = () => createHash("sha256").update("pys-calendario:" + pass()).digest("hex").slice(0, 32);
+export function calTokenOk(t: string) {
+  if (!adminConfigured() || !/^[a-f0-9]{32}$/.test(t)) return false;
+  return timingSafeEqual(Buffer.from(t), Buffer.from(calToken()));
 }
 
 /** Para páginas de servidor. */

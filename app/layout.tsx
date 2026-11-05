@@ -23,7 +23,7 @@ const manrope = localFont({ variable: "--font-manrope", display: "swap", src: [
 ] });
 const caveat = localFont({ variable: "--font-caveat", display: "swap", src: "./fonts/caveat-latin-700-normal.ttf", weight: "700" });
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://pelosysenales.es";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
