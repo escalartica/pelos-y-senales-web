@@ -108,7 +108,7 @@ export function limpiarPlan(x: unknown): Plan {
 }
 
 /* ---------- Exportar a calendario (.ics) ---------- */
-const icsTxt = (s: string) => s.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/[,;]/g, (m) => "\\" + m);
+const icsTxt = (s: string) => s.replace(/\\/g, "\\\\").replace(/\r?\n|\r/g, "\\n").replace(/[,;]/g, (m) => "\\" + m);
 /** Las líneas de un .ics no deben pasar de 75 bytes: las largas se parten y siguen con un espacio. */
 function plegar(linea: string) {
   const enc = new TextEncoder(); if (enc.encode(linea).length <= 74) return linea;

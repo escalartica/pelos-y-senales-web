@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { guardAdmin } from "@/lib/admin";
 import { listarTodo, publicarAdmin, resolver, reabrir, borrar, editar } from "@/lib/avisos-server";
 
+export const maxDuration = 120;
 export const dynamic = "force-dynamic";
 
 /** Moderación de Perdidos y avistados: listar todo (GET) y actuar sobre un aviso (POST). */

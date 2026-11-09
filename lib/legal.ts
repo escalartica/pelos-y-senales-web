@@ -4,7 +4,9 @@ export const TITULAR = {
   nif: "En trámite (asociación en proceso de inscripción)",
   domicilio: "Sevilla (España). Dirección completa a disposición de quien la solicite por correo",
   registro: "Solicitud de inscripción en el Registro de Asociaciones en trámite",
-  email: "infopelosysenales@gmail.com",
+  email: "info@pelosyseñales.com",
+  /** La misma dirección escrita como la entienden todos los programas de correo (para enlaces mailto). */
+  emailLink: "info@xn--pelosyseales-hhb.com",
   tel: "+34 635 025 378",
   web: "pelosyseñales.com",
   actualizado: "30 de octubre de 2026",

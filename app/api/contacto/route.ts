@@ -17,10 +17,10 @@ export async function POST(req: Request) {
   if (!isEmail(email)) return NextResponse.json({ error: "Escribe un correo válido." }, { status: 400 });
   if (body.priv !== true) return NextResponse.json({ error: "Hace falta aceptar la política de privacidad." }, { status: 400 });
 
-  const r = await sendMail({ to: TEAM, subject: `Contacto web · ${tipo || "mensaje"} · ${nombre}`, replyTo: email, html: layout(`Mensaje de ${nombre}`, `
+  const r = await sendMail({ to: TEAM, subject: `Contacto web · ${tipo || "mensaje"} · ${nombre}`.replace(/[\r\n\t]+/g, " "), replyTo: email, html: layout(`Mensaje de ${nombre}`, `
     <table style="border-collapse:collapse;margin:0 0 14px">${row("Sobre", tipo)}${row("Nombre", nombre)}${row("Correo", email)}${tel ? row("Teléfono", tel) : ""}</table>
     <p style="white-space:pre-wrap">${esc(msg)}</p>`) });
-  if (!r.ok) return NextResponse.json({ error: "Ahora mismo no podemos enviarlo desde la web. Escríbenos a infopelosysenales@gmail.com o llámanos al +34 635 025 378." }, { status: 502 });
+  if (!r.ok) return NextResponse.json({ error: "Ahora mismo no podemos enviarlo desde la web. Escríbenos a info@pelosyseñales.com o llámanos al +34 635 025 378." }, { status: 502 });
   await notifyWebhook("contacto", { fecha: new Date().toISOString(), nombre, email, tel, tipo, msg });
   return NextResponse.json({ ok: true });
 }

@@ -4,7 +4,7 @@
  */
 export interface Mail { to: string | string[]; subject: string; html: string; text?: string; replyTo?: string }
 export const FROM = process.env.MAIL_FROM || "Pelos y Señales <hola@pelosysenales.es>";
-export const TEAM = process.env.CONSULTAS_TO || "infopelosysenales@gmail.com";
+export const TEAM = process.env.CONSULTAS_TO || "info@xn--pelosyseales-hhb.com";
 export const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.com";
 
 export async function sendMail(m: Mail): Promise<{ ok: boolean; simulated?: boolean; id?: string; error?: string }> {

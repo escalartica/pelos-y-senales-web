@@ -19,7 +19,7 @@ export function printPoster(html: string) {
 }
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
 export function posterLost(x: Aviso) {
-  return `<div class="pp"><div><div class="big">SE BUSCA</div><div class="n">${esc(x.nombre)}</div></div><div><div class="im">${x.foto ? `<img src="${x.foto}" alt="">` : ""}</div><p>${esc(x.sexo)} · ${TAM[x.tam]} · ${esc(x.color)}${x.collar ? " · " + esc(x.collar) : ""}</p><p>Visto por última vez en <b>${esc(x.lugar)}</b> (${esc(x.ciudad)}), ${fmtFecha(x.fecha)}.</p>${x.caracter ? `<p>${esc(x.caracter)}. No lo persigas: avisa.</p>` : ""}</div><div><div class="tel">${esc(x.tel)}</div><div class="foot">pelosyseñales.com/perdidos</div></div></div>`;
+  return `<div class="pp"><div><div class="big">SE BUSCA</div><div class="n">${esc(x.nombre)}</div></div><div><div class="im">${x.foto && /^(\/api\/|data:image\/)/.test(x.foto) ? `<img src="${esc(x.foto)}" alt="">` : ""}</div><p>${esc(x.sexo)} · ${TAM[x.tam]} · ${esc(x.color)}${x.collar ? " · " + esc(x.collar) : ""}</p><p>Visto por última vez en <b>${esc(x.lugar)}</b> (${esc(x.ciudad)}), ${esc(fmtFecha(x.fecha))}.</p>${x.caracter ? `<p>${esc(x.caracter)}. No lo persigas: avisa.</p>` : ""}</div><div><div class="tel">${esc(x.tel)}</div><div class="foot">pelosyseñales.com/perdidos</div></div></div>`;
 }
 
 function share(x: Aviso) {
@@ -141,7 +141,7 @@ export default function Perdidos() {
         <p className="lead">Dos tablones y dos mapas que se hablan entre sí: el de los perros que alguien busca y el de los perros que alguien ha visto sueltos. Cuanto más cerca estén un punto y otro, antes vuelve a casa. Es gratis, sin registro, y la ubicación es lo que más ayuda.</p>
         <div className="avisos" aria-live="polite"><span className="p">{stats.p} perro{stats.p === 1 ? "" : "s"} que alguien busca</span><span className="a">{stats.a} avistado{stats.a === 1 ? "" : "s"} sin resolver</span><span className="h">{stats.h} ya en casa</span></div>
         {Tabs}
-        {carga === "ok" && !activo && <p className="note" role="status" style={{ marginTop: 14, fontWeight: 700 }}>Estamos activando la publicación de avisos. Mientras tanto, si has perdido o encontrado un perro, escríbenos a <a href="mailto:infopelosysenales@gmail.com">infopelosysenales@gmail.com</a> o llama al <a href="tel:+34635025378">+34 635 025 378</a> y lo difundimos.</p>}
+        {carga === "ok" && !activo && <p className="note" role="status" style={{ marginTop: 14, fontWeight: 700 }}>Estamos activando la publicación de avisos. Mientras tanto, si has perdido o encontrado un perro, escríbenos a <a href="mailto:info@xn--pelosyseales-hhb.com">info@pelosyseñales.com</a> o llama al <a href="tel:+34635025378">+34 635 025 378</a> y lo difundimos.</p>}
       </div>
       <div className="wrap">
         {tab === "perdido" && (

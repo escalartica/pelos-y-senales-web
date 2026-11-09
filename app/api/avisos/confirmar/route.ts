@@ -4,6 +4,7 @@ import { publicar } from "@/lib/avisos-server";
 import { SITE } from "@/lib/mail";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 120; // el envío por zona puede tardar hasta un minuto
 /** Enlace del correo: publica el aviso y lleva a la persona a verlo en el mapa. */
 export async function GET(req: Request) {
   const p = verify(new URL(req.url).searchParams.get("t") || "", 2);

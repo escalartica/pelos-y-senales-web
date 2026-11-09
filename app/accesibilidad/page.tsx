@@ -21,7 +21,7 @@ export default function Page() {
         <li>Las fotos que suben las personas en los avisos de perdidos no siempre tienen una descripción detallada.</li>
       </ul>
       <h2>Cuéntanos si algo no funciona</h2>
-      <p>Si encuentras una barrera, escríbenos a <a href={`mailto:${T.email}`}>{T.email}</a> o llama al <a href="tel:+34635025378">{T.tel}</a> y te daremos la información por otra vía.</p>
+      <p>Si encuentras una barrera, escríbenos a <a href={`mailto:${T.emailLink}`}>{T.email}</a> o llama al <a href="tel:+34635025378">{T.tel}</a> y te daremos la información por otra vía.</p>
     </main>
   );
 }

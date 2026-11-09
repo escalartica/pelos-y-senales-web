@@ -7,7 +7,7 @@ const s = (v: unknown, n = 300) => String(v ?? "").replace(/[\u0000-\u0008\u000b
 const one = <T extends string>(v: unknown, ok: readonly T[], def: T): T => (ok.includes(v as T) ? (v as T) : def);
 const ID = /^[a-z0-9][a-z0-9-]{0,48}$/;
 const url = (v: unknown) => { const x = s(v, 400); return !x ? "" : /^https?:\/\//i.test(x) ? x : ""; };
-const foto = (v: unknown) => { const x = s(v, 200); return /^\/(img|brand)\/[\w./-]+$/.test(x) || /^\/api\/img\/[a-f0-9]{20}$/.test(x) ? x : ""; };
+const foto = (v: unknown) => { const x = s(v, 200); return (/^\/(img|brand)\/[\w./-]+$/.test(x) && !x.includes("..")) || /^\/api\/img\/[a-f0-9]{20}$/.test(x) ? x : ""; };
 const num = (v: unknown) => { const n = Number(v); return v === "" || v == null || !isFinite(n) ? undefined : n; };
 
 const CONV = ["si", "no", "desc"] as const, EST = ["disponible", "proceso", "reservado", "adoptado"] as const;

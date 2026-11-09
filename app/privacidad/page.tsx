@@ -10,7 +10,7 @@ export default function Page() {
       <p className="upd">Última actualización: {T.actualizado}</p>
       <p>Pedimos solo los datos necesarios para cada cosa y no los vendemos ni los cedemos a nadie salvo lo que se explica aquí. Cumplimos el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD).</p>
       <h2>Responsable</h2>
-      <p>{T.nombre} · NIF {T.nif} · {T.domicilio} · <a href={`mailto:${T.email}`}>{T.email}</a></p>
+      <p>{T.nombre} · NIF {T.nif} · {T.domicilio} · <a href={`mailto:${T.emailLink}`}>{T.email}</a></p>
       <h2>Qué datos tratamos y para qué</h2>
       <div className="tw" tabIndex={0} role="region" aria-label="Tabla desplazable"><table>
         <thead><tr><th scope="col">Cuándo</th><th scope="col">Datos</th><th scope="col">Para qué y base legal</th><th scope="col">Cuánto tiempo</th></tr></thead>
@@ -29,7 +29,7 @@ export default function Page() {
         <li><b>Proveedores técnicos</b> que tratan datos por nuestra cuenta: Vercel Inc. (alojamiento de la web), Resend (envío de correos) y Upstash (base de datos de avisos). Algunos están en Estados Unidos y se acogen al Marco de Privacidad de Datos UE-EE. UU. o a cláusulas contractuales tipo de la Comisión Europea.</li>
       </ul>
       <h2>Tus derechos</h2>
-      <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación o portabilidad de tus datos, y retirar tu consentimiento cuando quieras, escribiendo a <a href={`mailto:${T.email}`}>{T.email}</a>. Si crees que no lo hemos hecho bien, puedes reclamar ante la <a href="https://www.aepd.es/" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos</a>.</p>
+      <p>Puedes pedir acceso, rectificación, supresión, oposición, limitación o portabilidad de tus datos, y retirar tu consentimiento cuando quieras, escribiendo a <a href={`mailto:${T.emailLink}`}>{T.email}</a>. Si crees que no lo hemos hecho bien, puedes reclamar ante la <a href="https://www.aepd.es/" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos</a>.</p>
       <h2>Menores</h2>
       <p>Los formularios son para mayores de 14 años. Para adoptar, la protectora pedirá siempre una persona adulta.</p>
       <h2>Seguridad</h2>

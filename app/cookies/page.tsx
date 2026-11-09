@@ -19,7 +19,7 @@ export default function Page() {
         </tbody>
       </table></div>
       <p>Son estrictamente necesarios para un servicio que tú pides, por lo que están exentos de consentimiento (artículo 22.2 de la LSSI). Puedes borrarlos desde la configuración de tu navegador.</p>
-      <p>Si algún día añadimos analítica, será respetuosa con la privacidad y te lo preguntaremos antes. Dudas: <a href={`mailto:${T.email}`}>{T.email}</a>. Ver también la <Link href="/privacidad">política de privacidad</Link>.</p>
+      <p>Si algún día añadimos analítica, será respetuosa con la privacidad y te lo preguntaremos antes. Dudas: <a href={`mailto:${T.emailLink}`}>{T.email}</a>. Ver también la <Link href="/privacidad">política de privacidad</Link>.</p>
     </main>
   );
 }

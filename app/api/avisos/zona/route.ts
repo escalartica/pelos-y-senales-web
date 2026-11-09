@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   if (!(await rateLimit("zona:" + ipOf(req), 4))) return NextResponse.json({ error: "Demasiados intentos. Espera unos minutos." }, { status: 429 });
   let b: Record<string, unknown>; try { b = await req.json(); } catch { return NextResponse.json({ error: "Petición no válida." }, { status: 400 }); }
   const email = String(b.email || "").trim().toLowerCase(); const ciudad = String(b.ciudad || "");
-  if (!isEmail(email) || !CITIES[ciudad]) return NextResponse.json({ error: "Elige una ciudad y escribe un correo válido." }, { status: 400 });
+  if (!isEmail(email) || !Object.hasOwn(CITIES, ciudad)) return NextResponse.json({ error: "Elige una ciudad y escribe un correo válido." }, { status: 400 });
   let url: string;
   try { url = `${SITE}/api/avisos/zona?alta=${encodeURIComponent(sign({ email, ciudad, a: "zona" }))}`; } catch (e) { console.error("[zona]", e); return NextResponse.json({ error: "Los avisos por zona se están activando. Vuelve a intentarlo en unos días." }, { status: 503 }); }
   const r = await sendMail({ to: email, subject: "Confirma tus avisos de perros perdidos", html: layout("Un clic y te avisamos", `
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   const q = new URL(req.url).searchParams;
   const alta = q.get("alta"), bajaT = q.get("baja");
-  if (alta) { const p = verify(alta, 7); if (!p || p.a !== "zona") return NextResponse.redirect(`${SITE}/perdidos?zona=caducado`); const c = CITIES[String(p.ciudad)]; if (!c) return NextResponse.redirect(`${SITE}/perdidos?zona=caducado`); await suscribir(String(p.email), String(p.ciudad), c[0], c[1]); return NextResponse.redirect(`${SITE}/perdidos?zona=ok`); }
+  if (alta) { const p = verify(alta, 7); if (!p || p.a !== "zona") return NextResponse.redirect(`${SITE}/perdidos?zona=caducado`); const c = Object.hasOwn(CITIES, String(p.ciudad)) ? CITIES[String(p.ciudad)] : undefined; if (!c) return NextResponse.redirect(`${SITE}/perdidos?zona=caducado`); await suscribir(String(p.email), String(p.ciudad), c[0], c[1]); return NextResponse.redirect(`${SITE}/perdidos?zona=ok`); }
   if (bajaT) { const p = verify(bajaT, 3650); if (p && p.a === "baja") await baja(String(p.email)); return NextResponse.redirect(`${SITE}/perdidos?zona=baja`); }
   return NextResponse.redirect(`${SITE}/perdidos`);
 }

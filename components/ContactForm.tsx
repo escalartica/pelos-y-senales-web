@@ -4,7 +4,7 @@ import type { Dog, Protectora } from "@/lib/data";
 
 /** Si el envío desde la web falla, abre el correo del visitante con el mensaje ya escrito. */
 function mailtoFallback(subject: string, body: string) {
-  return `mailto:infopelosysenales@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:info@xn--pelosyseales-hhb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function ContactForm({ d, p }: { d: Dog; p: Protectora }) {

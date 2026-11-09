@@ -25,10 +25,11 @@ function local(c: Cmd): unknown {
   const [op, k, ...a] = c.map(String); const O = op.toUpperCase();
   switch (O) {
     case "GET": return (g(k)?.v as string) ?? null;
-    case "SET": { const i = a.indexOf("EX"); const keep = a.includes("KEEPTTL") ? g(k)?.exp : undefined; mem.set(k, { v: a[0], exp: i >= 0 ? Date.now() + Number(a[i + 1]) * 1000 : keep }); return "OK"; }
+    case "SET": { if (a.includes("NX") && g(k)) return null; const i = a.indexOf("EX"); const keep = a.includes("KEEPTTL") ? g(k)?.exp : undefined; mem.set(k, { v: a[0], exp: i >= 0 ? Date.now() + Number(a[i + 1]) * 1000 : keep }); return "OK"; }
     case "DEL": return mem.delete(k) ? 1 : 0;
     case "EXPIRE": { const e = g(k); if (!e) return 0; e.exp = Date.now() + Number(a[0]) * 1000; return 1; }
     case "INCR": { const e = g(k); const n = Number(e?.v ?? 0) + 1; mem.set(k, { v: String(n), exp: e?.exp }); return n; }
+    case "INCRBY": { const e = g(k); const n = Number(e?.v ?? 0) + Number(a[0]); mem.set(k, { v: String(n), exp: e?.exp }); return n; }
     case "ZADD": { const e = g(k) ?? { v: new Map<string, number>() }; (e.v as Map<string, number>).set(a[1], Number(a[0])); mem.set(k, e); return 1; }
     case "ZREM": { const z = g(k)?.v as Map<string, number> | undefined; return z?.delete(a[0]) ? 1 : 0; }
     case "ZREVRANGE": { const z = g(k)?.v as Map<string, number> | undefined; if (!z) return []; return [...z.entries()].sort((x, y) => y[1] - x[1]).map((x) => x[0]).slice(Number(a[0]), Number(a[1]) + 1); }

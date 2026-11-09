@@ -28,7 +28,7 @@ export function limpiar(b: Record<string, unknown>): { a?: Omit<AvisoInterno, "i
   if (!/^[^\s@]{1,64}@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { error: "Escribe un correo válido: te enviaremos el enlace para publicarlo." };
   const tam = TAMS.includes(b.tam as Tam) ? (b.tam as Tam) : "m";
   const fecha = s(b.fecha, 16) || new Date().toISOString().slice(0, 16);
-  if (isNaN(+new Date(fecha))) return { error: "La fecha no es válida." };
+  if (!/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/.test(fecha) || isNaN(+new Date(fecha))) return { error: "La fecha no es válida." };
   const tel = s(b.tel, 30).replace(/[^\d+ ]/g, "");
   const a = {
     tipo, tam, lat: Math.round(lat * 1e4) / 1e4, lon: Math.round(lon * 1e4) / 1e4, email, fecha,
@@ -89,7 +89,7 @@ export async function listar(): Promise<Aviso[]> {
   if (!ids?.length) return [];
   const vals = await kv<(string | null)[]>("MGET", ...ids.map(KEY));
   const out: Aviso[] = []; const gone: string[] = [];
-  vals.forEach((v, i) => { if (!v) { gone.push(ids[i]); return; } const x = JSON.parse(v) as AvisoInterno; if (x.estadoPub === "publicado") out.push(publico(x)); });
+  vals.forEach((v, i) => { if (!v) { gone.push(ids[i]); return; } let x: AvisoInterno; try { x = JSON.parse(v) as AvisoInterno; } catch { return; } if (x.estadoPub === "publicado") out.push(publico(x)); });
   if (gone.length) await kvPipe(gone.map((id) => ["ZREM", PUB, id]));
   return out;
 }
@@ -129,11 +129,19 @@ async function avisarSuscritos(x: AvisoInterno) {
   for (let i = 0; i < flat.length; i += 2) {
     try { const z = JSON.parse(flat[i + 1]) as { lat: number; lon: number }; if (flat[i] !== x.email && kmBetween(z, x) < 30) destinos.push(flat[i]); } catch { /* registro roto */ }
   }
-  for (const to of destinos.slice(0, 300)) {
-    await sendMail({ to, subject: `${x.tipo === "perdido" ? "Se busca un perro" : "Perro visto suelto"} cerca de ${x.ciudad}`, html: layout(x.tipo === "perdido" ? `Se busca: ${x.nombre}` : "Han visto un perro suelto cerca de ti", `
+  // Freno antiabuso: cada correo que publica solo dispara un envío por zona al día, y hay un tope global diario.
+  const dia = new Date().toISOString().slice(0, 10);
+  try {
+    const [uno, total] = (await kvPipe([["SET", `zonamail:${x.email}:${dia}`, "1", "EX", 86400, "NX"], ["INCRBY", `zonamail:total:${dia}`, Math.min(destinos.length, 100)], ["EXPIRE", `zonamail:total:${dia}`, 172800]])) as [string | null, number];
+    if (uno !== "OK" || Number(total) > 1000) { console.warn("[avisarSuscritos] envío por zona frenado", x.id); return; }
+  } catch (e) { console.error("[avisarSuscritos]", e); return; }
+  for (const to of destinos.slice(0, 100)) {
+    await new Promise((r) => setTimeout(r, 550)); // Resend admite unas 2 peticiones por segundo
+    const r = await sendMail({ to, subject: `${x.tipo === "perdido" ? "Se busca un perro" : "Perro visto suelto"} cerca de ${x.ciudad}`, html: layout(x.tipo === "perdido" ? `Se busca: ${x.nombre}` : "Han visto un perro suelto cerca de ti", `
       <p>${x.tipo === "perdido" ? `${esc(x.nombre || "Un perro")} (${esc(x.color)}) se perdió en <b>${esc(x.lugar)}</b>, ${esc(x.ciudad)}.` : `Un perro ${esc(x.color)} visto en <b>${esc(x.lugar)}</b>, ${esc(x.ciudad)}.`}</p>
       <p><a href="${SITE}/perdidos#pa-${x.id}" style="color:#161616;font-weight:800">Ver el aviso en el mapa</a></p>
       <p style="font-size:13px;opacity:.7">Recibes esto porque pediste avisos de tu zona. <a href="${linkBaja(to)}" style="color:#161616">Darme de baja</a>.</p>`) });
+    if (!r.ok) console.error("[avisarSuscritos] fallo al enviar a un suscrito", x.id);
   }
 }
 

@@ -14,7 +14,7 @@ export async function GET() {
 
 /** Nuevo aviso: queda pendiente hasta que la persona confirma desde su correo. */
 export async function POST(req: Request) {
-  if (process.env.NODE_ENV === "production" && (!kvConfigured() || !process.env.RESEND_API_KEY || (process.env.ALERTAS_SECRET || "").length < 24)) return NextResponse.json({ error: "La publicación de avisos se está activando. Mientras tanto, escríbenos a infopelosysenales@gmail.com." }, { status: 503 });
+  if (process.env.NODE_ENV === "production" && (!kvConfigured() || !process.env.RESEND_API_KEY || (process.env.ALERTAS_SECRET || "").length < 24)) return NextResponse.json({ error: "La publicación de avisos se está activando. Mientras tanto, escríbenos a info@pelosyseñales.com." }, { status: 503 });
   if (!(await rateLimit("aviso:" + ipOf(req), 5, 3600))) return NextResponse.json({ error: "Has enviado varios avisos seguidos. Espera un rato." }, { status: 429 });
   let b: Record<string, unknown>;
   try { b = await req.json(); } catch { return NextResponse.json({ error: "Petición no válida." }, { status: 400 }); }

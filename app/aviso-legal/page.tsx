@@ -15,7 +15,7 @@ export default function Page() {
         <li><b>NIF:</b> {T.nif}</li>
         <li><b>Domicilio:</b> {T.domicilio}</li>
         <li><b>Inscripción:</b> {T.registro}</li>
-        <li><b>Correo:</b> <a href={`mailto:${T.email}`}>{T.email}</a> · <b>Teléfono:</b> <a href="tel:+34635025378">{T.tel}</a></li>
+        <li><b>Correo:</b> <a href={`mailto:${T.emailLink}`}>{T.email}</a> · <b>Teléfono:</b> <a href="tel:+34635025378">{T.tel}</a></li>
       </ul>
       <h2>Qué es Pelos y Señales</h2>
       <p>Un proyecto sin ánimo de lucro que fotografía a perros de protectoras, refugios y centros municipales y publica sus fichas para que encuentren familia. <b>No entregamos animales ni cobramos por la adopción</b>: cada adopción la valora, decide y formaliza la protectora responsable del perro, con su propio proceso.</p>
@@ -32,7 +32,7 @@ export default function Page() {
       <h2>Enlaces</h2>
       <p>Enlazamos a webs de protectoras, ayuntamientos y otros servicios. No somos responsables de su contenido.</p>
       <h2>Ley aplicable</h2>
-      <p>Esta web se rige por la ley española. Para cualquier duda, escríbenos a <a href={`mailto:${T.email}`}>{T.email}</a>.</p>
+      <p>Esta web se rige por la ley española. Para cualquier duda, escríbenos a <a href={`mailto:${T.emailLink}`}>{T.email}</a>.</p>
       <p>Más información: <Link href="/privacidad">política de privacidad</Link> · <Link href="/cookies">cookies</Link> · <Link href="/accesibilidad">accesibilidad</Link>.</p>
     </main>
   );

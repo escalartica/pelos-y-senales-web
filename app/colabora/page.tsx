@@ -46,7 +46,7 @@ export default function Colabora() {
       </section>
       <section className="band" id="contacto">
         <div className="wrap"><Reveal className="split">
-          <div><span className="eyebrow">Escríbenos</span><h2>Veinte minutos para escucharte.</h2><p className="lead">En la primera conversación solo pedimos eso: escuchar qué necesitáis y, si encaja, una segunda llamada para estudiar una colaboración piloto. Nada más.</p><p className="contactbig"><a href="mailto:infopelosysenales@gmail.com">infopelosysenales@gmail.com</a></p><p style={{ marginTop: 10, fontWeight: 700 }}><a href="tel:+34635025378">+34 635 025 378</a> · <a href="https://www.instagram.com/pelosysenales.es/" target="_blank" rel="noopener noreferrer">@pelosysenales.es</a></p></div>
+          <div><span className="eyebrow">Escríbenos</span><h2>Veinte minutos para escucharte.</h2><p className="lead">En la primera conversación solo pedimos eso: escuchar qué necesitáis y, si encaja, una segunda llamada para estudiar una colaboración piloto. Nada más.</p><p className="contactbig"><a href="mailto:info@xn--pelosyseales-hhb.com">info@pelosyseñales.com</a></p><p style={{ marginTop: 10, fontWeight: 700 }}><a href="tel:+34635025378">+34 635 025 378</a> · <a href="https://www.instagram.com/pelosysenales.es/" target="_blank" rel="noopener noreferrer">@pelosysenales.es</a></p></div>
           <ContactoForm />
         </Reveal></div>
       </section>

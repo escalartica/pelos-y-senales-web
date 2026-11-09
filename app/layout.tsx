@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <CatalogProvider value={{ dogs, prot, madrinas }}>
         <a className="skip" href="#contenido">Saltar al contenido</a>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Pelos y Señales", url: SITE, logo: `${SITE}/brand/logo-principal.svg`, description: "Del match a casa: fotos reales de perros de protectoras y contacto directo con quien los cuida.", email: "infopelosysenales@gmail.com", telephone: "+34635025378", sameAs: ["https://www.instagram.com/pelosysenales.es/"], areaServed: "ES" }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Pelos y Señales", url: SITE, logo: `${SITE}/brand/logo-principal.svg`, description: "Del match a casa: fotos reales de perros de protectoras y contacto directo con quien los cuida.", email: "info@pelosyseñales.com", telephone: "+34635025378", sameAs: ["https://www.instagram.com/pelosysenales.es/"], areaServed: "ES" }) }} />
         <div className="grain" aria-hidden="true" />
         <Nav />
         <div id="contenido">{children}</div>

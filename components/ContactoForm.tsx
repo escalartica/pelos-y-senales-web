@@ -4,7 +4,7 @@ import Link from "next/link";
 
 /** Si el envío desde la web falla, abre el correo del visitante con el mensaje ya escrito. */
 function mailtoFallback(subject: string, body: string) {
-  return `mailto:infopelosysenales@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:info@xn--pelosyseales-hhb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 const TIPOS = ["Soy una protectora o un centro", "Quiero añadir o corregir una entidad del mapa", "Tengo una clínica, tienda o peluquería", "Quiero acoger la exposición", "Quiero ser madrina, padrino o voluntario", "Prensa o instituciones", "Otra cosa"];
@@ -26,7 +26,7 @@ export default function ContactoForm({ tipo = "", titulo = "Escríbenos" }: { ti
       const mail = mailtoFallback(`${body.tipo} · ${body.nombre}`, `${body.msg}\n\n${body.nombre}\n${body.email}${body.tel ? "\n" + body.tel : ""}`);
       setSt(r.ok ? { ok: true, msg: "Mensaje enviado. Te contestaremos lo antes posible." } : { msg: r.status >= 500 ? "No hemos podido enviarlo desde la web. Pulsa el botón y se abrirá tu correo con el mensaje ya escrito, o llámanos al +34 635 025 378." : j.error || "No se pudo enviar.", mail: r.status >= 500 ? mail : undefined });
       if (r.ok) form.reset();
-    } catch { setSt({ msg: "No se pudo enviar. Escríbenos a infopelosysenales@gmail.com." }); }
+    } catch { setSt({ msg: "No se pudo enviar. Escríbenos a info@pelosyseñales.com." }); }
     setBusy(false);
   };
   return (
