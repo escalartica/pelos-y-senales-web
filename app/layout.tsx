@@ -27,9 +27,9 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.c
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: "Pelos y Señales™ · Del match a casa", template: "%s · Pelos y Señales" },
-  description: "Fotografiamos a los perros de las protectoras de toda España tal como son cuando están bien. Haz match con tu vida, mira el mapa de entidades y publica perdidos y avistados.",
-  openGraph: { type: "website", locale: "es_ES", siteName: "Pelos y Señales", images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Pelos y Señales · Del match a casa" }] },
+  title: { default: "Pelos y Señales · Perros de protectora en adopción", template: "%s · Pelos y Señales" },
+  description: "Perros en adopción de protectoras de toda España, fotografiados tal como son. Haz match con tu forma de vida y escribe directamente a su protectora.",
+  openGraph: { type: "website", locale: "es_ES", siteName: "Pelos y Señales", url: SITE, images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Pelos y Señales · Del match a casa" }] },
   twitter: { card: "summary_large_image" },
 };
 export const viewport: Viewport = { themeColor: "#FBF7EE", colorScheme: "light" };
@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body>
         <CatalogProvider value={{ dogs, prot, madrinas }}>
         <a className="skip" href="#contenido">Saltar al contenido</a>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", name: "Pelos y Señales", url: SITE, logo: `${SITE}/brand/logo-principal.svg`, description: "Del match a casa: fotos reales de perros de protectoras y contacto directo con quien los cuida.", email: "info@pelosyseñales.com", telephone: "+34635025378", sameAs: ["https://www.instagram.com/pelosysenales.es/"], areaServed: "ES" }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Organization", "@id": `${SITE}/#org`, name: "Pelos y Señales", url: SITE, logo: `${SITE}/brand/logo-principal.svg`, description: "Del match a casa: fotos reales de perros de protectoras y contacto directo con quien los cuida.", email: "info@pelosyseñales.com", telephone: "+34635025378", sameAs: ["https://www.instagram.com/pelosysenales.es/"], areaServed: "ES" }) }} />
         <div className="grain" aria-hidden="true" />
         <Nav />
         <div id="contenido">{children}</div>

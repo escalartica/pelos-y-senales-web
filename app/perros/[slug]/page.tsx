@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.com";
 import { notFound } from "next/navigation";
 import { CONV_TXT, ACT_TXT, protOf } from "@/lib/data";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
@@ -21,7 +22,10 @@ export async function generateStaticParams() { return (await getCatalog()).dogs.
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params; const cat = await getCatalog(); const d = getDogIn(cat, slug); if (!d) return {};
   const p = protOf(cat.prot, d.prot);
-  return { title: `${d.n}, ${d.raza.toLowerCase()} en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`, description: d.desc };
+  const t = `${d.n}, ${d.raza.toLowerCase()} en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`;
+  const desc = d.desc.length > 158 ? d.desc.slice(0, 155).replace(/\s+\S*$/, "") + "…" : d.desc;
+  // Si con « · Pelos y Señales» pasa de unos 60 caracteres, Google lo corta: se usa el título sin la marca.
+  return { title: t.length > 42 ? { absolute: t } : t, description: desc, alternates: { canonical: `/perros/${d.id}` } };
 }
 
 export default async function Ficha({ params }: Props) {
@@ -32,6 +36,11 @@ export default async function Ficha({ params }: Props) {
   const mad = madrinaOfIn(cat, d.id);
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Perros en adopción", item: `${SITE_URL}/perros` },
+        { "@type": "ListItem", position: 3, name: d.n, item: `${SITE_URL}/perros/${d.id}` },
+      ] }).replace(/</g, "\\u003c") }} />
       <div className="wrap ficha-top">
         <div className="crumbs"><Link href="/">Inicio</Link><span>›</span><Link href="/perros">Perros</Link><span>›</span><span>{d.n}</span></div>
         <div className="ficha">

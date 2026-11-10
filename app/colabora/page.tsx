@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import Image from "next/image";
 import { foco } from "@/lib/foco";
 import ContactoForm from "@/components/ContactoForm";
-export const metadata: Metadata = { title: "Colabora", description: "Protectoras, instituciones, veterinarios, educadores, peluquerías, comercios y seis maneras de ayudar." };
+export const metadata: Metadata = { alternates: { canonical: "/colabora" }, title: "Colabora", description: "Protectoras, instituciones, veterinarios, educadores, peluquerías, comercios y seis maneras de ayudar." };
 const QUIEN = [
   ["🩺", "Clínicas y hospitales veterinarios", "Revisión inicial, vacunas, microchip y esterilización a tarifa solidaria. Un bono de bienvenida para quien adopta con nosotros.", "Prioridad alta"],
   ["🎓", "Educadores caninos", "Sesiones de adaptación en las primeras semanas en casa, cuando más se devuelven perros. Charlas de convivencia en los centros.", "Prioridad alta"],

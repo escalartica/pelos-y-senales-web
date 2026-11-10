@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { TITULAR as T } from "@/lib/legal";
-export const metadata: Metadata = { title: "Accesibilidad", description: "Nuestro compromiso con la accesibilidad de pelosyseñales.com (WCAG 2.1 AA)." };
+export const metadata: Metadata = { alternates: { canonical: "/accesibilidad" }, title: "Accesibilidad", description: "Nuestro compromiso con la accesibilidad de pelosyseñales.com (WCAG 2.1 AA)." };
 export default function Page() {
   return (
     <main className="wrap legal">

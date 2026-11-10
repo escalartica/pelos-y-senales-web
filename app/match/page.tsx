@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import MatchWizard from "@/components/MatchWizard";
-export const metadata: Metadata = { title: "Haz match", description: "Cuatro preguntas sobre cómo vives y te enseñamos, uno a uno, los perros que encajan contigo. La protectora valora cada caso." };
+export const metadata: Metadata = { alternates: { canonical: "/match" }, title: "Haz match", description: "Cuatro preguntas sobre cómo vives y te enseñamos, uno a uno, los perros que encajan contigo. La protectora valora cada caso." };
 export default function Match() {
   return (
     <main className="wrap mlayout" style={{ paddingBlock: "clamp(28px,4vw,56px) 100px" }}>

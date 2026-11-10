@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import MadrinaCard from "@/components/MadrinaCard";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 
-export const metadata: Metadata = { title: "Madrinas y padrinos", description: "Personas conocidas que prestan su voz a un perro del proyecto: comparten su ficha, cuentan su historia y vienen a la sesión si pueden." };
+export const metadata: Metadata = { alternates: { canonical: "/madrinas" }, title: "Madrinas y padrinos", description: "Personas conocidas que prestan su voz a un perro del proyecto: comparten su ficha, cuentan su historia y vienen a la sesión si pueden." };
 
 const PEDIMOS = [["Una frase", "Para la ficha de su ahijado o ahijada. Con su nombre, en sus palabras."], ["Una publicación al mes", "Su ahijado en sus redes, con el enlace a la ficha. Nosotros preparamos el material."], ["Venir si pueden", "A la sesión de fotos o a la exposición. Sin obligación: ya ayudan con lo anterior."], ["Cuando se adopta, contarlo", "La mejor noticia es la que cierra el círculo. Y elegir otro ahijado, si quieren."]];
 const NO = ["No les pedimos dinero.", "No hay exclusividad: pueden apoyar a otras causas.", "No firman nada; se van cuando quieran.", "No eligen quién adopta: eso lo hace la protectora."];

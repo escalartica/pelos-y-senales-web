@@ -1,4 +1,6 @@
 import Image from "next/image";
+import type { Metadata } from "next";
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 import { foco } from "@/lib/foco";
 import Link from "next/link";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 import { entidades } from "@/lib/spain";
-export const metadata: Metadata = { title: "Protectoras", description: "Las protectoras que colaboran con Pelos y Señales y cómo sumarse. Participar no tiene coste y la protectora decide siempre." };
+export const metadata: Metadata = { alternates: { canonical: "/protectoras" }, title: "Protectoras", description: "Las protectoras que colaboran con Pelos y Señales y cómo sumarse. Participar no tiene coste y la protectora decide siempre." };
 export default async function Protectoras() {
   const cat = await getCatalog(); const PROT = cat.prot; const dogsOf = (id: string) => dogsOfIn(cat, id); const ENT = entidades(PROT);
   const otras = ENT.filter((e) => !e.colab);

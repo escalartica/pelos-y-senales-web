@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TITULAR as T } from "@/lib/legal";
-export const metadata: Metadata = { title: "Política de privacidad", description: "Qué datos tratamos en pelosyseñales.com, para qué, durante cuánto tiempo y cómo ejercer tus derechos." };
+export const metadata: Metadata = { alternates: { canonical: "/privacidad" }, title: "Política de privacidad", description: "Qué datos tratamos en pelosyseñales.com, para qué, durante cuánto tiempo y cómo ejercer tus derechos." };
 export default function Page() {
   return (
     <main className="wrap legal">

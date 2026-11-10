@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://xn--pelosyseales-hhb.com";
 import { notFound } from "next/navigation";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 import DogCard from "@/components/DogCard";
@@ -10,7 +11,9 @@ type Props = { params: Promise<{ id: string }> };
 export async function generateStaticParams() { return Object.keys((await getCatalog()).prot).map((id) => ({ id })); }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params; const p = (await getCatalog()).prot[id]; if (!p) return {};
-  return { title: `${p.n}, perros en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`, description: p.desc };
+  const corto = p.n.split(" · ")[0];
+  const t = `${corto}: perros en adopción${p.ciudad ? ` en ${p.ciudad}` : ""}`;
+  return { title: t.length > 42 ? { absolute: t } : t, description: p.desc, alternates: { canonical: `/protectoras/${p.id}` } };
 }
 const AYUDA = [["Adoptar", "Haz match con uno de sus perros y escríbeles desde su ficha."], ["Acoger", "Una casa temporal mientras encuentra la suya. Pregúntales si lo necesitan."], ["Ser voluntario", "Pasear, limpiar, ayudar en las jornadas. Más manos en los centros es nuestro segundo objetivo."], ["Compartir", "Una ficha en tu historia llega a gente a la que nadie más llega."]];
 
@@ -25,6 +28,10 @@ export default async function Protectora({ params }: Props) {
   if (p.web) facts.push(["En internet", <a key="w" href={p.web} target="_blank" rel="noopener noreferrer">Su página</a>]);
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "AnimalShelter", name: p.n, description: p.desc || undefined,
+        url: `${SITE_URL}/protectoras/${p.id}`, ...(p.web ? { sameAs: [p.web] } : {}), ...(p.tel ? { telephone: p.tel } : {}),
+        ...(p.ciudad ? { address: { "@type": "PostalAddress", addressLocality: p.ciudad, addressRegion: p.prov || undefined, addressCountry: "ES" } } : {}),
+        ...(p.lat != null && p.lon != null ? { geo: { "@type": "GeoCoordinates", latitude: p.lat, longitude: p.lon } } : {}) }).replace(/</g, "\\u003c") }} />
       <div className="wrap ficha-top">
         <div className="crumbs"><Link href="/">Inicio</Link><span>›</span><Link href="/protectoras">Protectoras</Link><span>›</span><span>{p.n}</span></div>
         <div className="phero">

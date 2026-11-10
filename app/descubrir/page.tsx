@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SwipeDeck from "@/components/SwipeDeck";
 import DiscIntro from "@/components/DiscIntro";
-export const metadata: Metadata = { title: "Descubrir uno a uno", description: "Pasa los perros de uno en uno y guarda en favoritos los que quieras conocer." };
+export const metadata: Metadata = { alternates: { canonical: "/descubrir" }, title: "Descubrir uno a uno", description: "Pasa los perros de uno en uno y guarda en favoritos los que quieras conocer." };
 export default function Descubrir() {
   return (
     <main className="wrap disc">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TITULAR as T } from "@/lib/legal";
-export const metadata: Metadata = { title: "Aviso legal", description: "Datos del titular de pelosyseñales.com y condiciones de uso de la web." };
+export const metadata: Metadata = { alternates: { canonical: "/aviso-legal" }, title: "Aviso legal", description: "Datos del titular de pelosyseñales.com y condiciones de uso de la web." };
 export default function Page() {
   return (
     <main className="wrap legal">

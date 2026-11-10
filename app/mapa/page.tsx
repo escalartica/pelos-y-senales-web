@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import MapaEntidades from "@/components/MapaEntidades";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { alternates: { canonical: "/mapa" },
   title: "Mapa de protectoras, refugios y centros",
   description: "Protectoras, refugios y centros municipales de toda España, colaboren o no con Pelos y Señales, con su enlace y su contacto.",
 };

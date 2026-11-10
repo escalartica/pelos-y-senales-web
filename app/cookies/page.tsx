@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TITULAR as T } from "@/lib/legal";
-export const metadata: Metadata = { title: "Cookies", description: "Esta web no usa cookies de publicidad ni de analítica." };
+export const metadata: Metadata = { alternates: { canonical: "/cookies" }, title: "Cookies", description: "Esta web no usa cookies de publicidad ni de analítica." };
 export default function Page() {
   return (
     <main className="wrap legal">

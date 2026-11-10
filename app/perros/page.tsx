@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import PerrosExplorer from "@/components/PerrosExplorer";
-export const metadata: Metadata = { title: "Perros en adopción", description: "Fichas autorizadas por su protectora, con estado y fecha de revisión. Filtra, guarda favoritos y escribe a la protectora." };
+export const metadata: Metadata = { alternates: { canonical: "/perros" }, title: "Perros en adopción", description: "Fichas autorizadas por su protectora, con estado y fecha de revisión. Filtra, guarda favoritos y escribe a la protectora." };
 export default function Perros() {
   return (
     <main>
