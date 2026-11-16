@@ -7,14 +7,14 @@ import { useFavs } from "@/lib/store";
 const LINKS = [
   { href: "/", label: "Inicio" },
   { href: "/match", label: "Haz match" },
-  { href: "/perros", label: "Perros" },
+  { href: "/perros", label: "Peludos" },
   { href: "/protectoras", label: "Protectoras" },
   { href: "/mapa", label: "Mapa" },
   { href: "/perdidos", label: "Perdidos" },
   { href: "/madrinas", label: "Madrinas" },
   { href: "/colabora", label: "Colabora" },
 ];
-const MENU = [["/match", "Haz match"], ["/perros", "Todos los perros"], ["/descubrir", "Descubrir uno a uno"], ["/protectoras", "Protectoras"], ["/mapa", "Mapa de entidades"], ["/perdidos", "Perdidos y avistados"], ["/madrinas", "Madrinas y padrinos"], ["/#pandilla", "La pandilla"], ["/colabora", "Colabora"], ["/#faq", "Preguntas"]];
+const MENU = [["/match", "Haz match"], ["/perros", "Todos los peludos"], ["/descubrir", "Descubrir uno a uno"], ["/protectoras", "Protectoras"], ["/mapa", "Mapa de entidades"], ["/perdidos", "Perdidos y avistados"], ["/madrinas", "Madrinas y padrinos"], ["/#pandilla", "La pandilla"], ["/colabora", "Colabora"], ["/#faq", "Preguntas"]];
 
 export default function Nav() {
   const path = usePathname();
@@ -42,7 +42,7 @@ export default function Nav() {
       </div>
       <nav className="mobile-tabs" aria-label="Navegación móvil">
         <Link href="/" className={path === "/" ? "on" : ""}><span>⌂</span>Inicio</Link>
-        <Link href="/perros" className={path.startsWith("/perros") ? "on" : ""}><span>🐾</span>Perros</Link>
+        <Link href="/perros" className={path.startsWith("/perros") ? "on" : ""}><span>🐾</span>Peludos</Link>
         <Link href="/match" className={path === "/match" || path === "/descubrir" ? "on" : ""}><span>⇄</span>Match</Link>
         <Link href="/perdidos" className={path.startsWith("/perdidos") ? "on" : ""}><span>◎</span>Perdidos</Link>
         <Link href="/mapa" className={path === "/mapa" ? "on" : ""}><span>✦</span>Mapa</Link>
