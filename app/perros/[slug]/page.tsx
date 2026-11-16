@@ -38,11 +38,11 @@ export default async function Ficha({ params }: Props) {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
         { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Perros en adopción", item: `${SITE_URL}/perros` },
+        { "@type": "ListItem", position: 2, name: "Peludos", item: `${SITE_URL}/perros` },
         { "@type": "ListItem", position: 3, name: d.n, item: `${SITE_URL}/perros/${d.id}` },
       ] }).replace(/</g, "\\u003c") }} />
       <div className="wrap ficha-top">
-        <div className="crumbs"><Link href="/">Inicio</Link><span>›</span><Link href="/perros">Perros</Link><span>›</span><span>{d.n}</span></div>
+        <div className="crumbs"><Link href="/">Inicio</Link><span>›</span><Link href="/perros">Peludos</Link><span>›</span><span>{d.n}</span></div>
         <div className="ficha">
           <div className="gallery">
             <DogArt d={d} className="main" sizes="(max-width: 900px) 100vw, 50vw" priority />
