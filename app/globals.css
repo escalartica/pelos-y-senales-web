@@ -744,8 +744,8 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
 .pform .hint{font-size:12px;color:var(--ink-60);font-weight:700;margin-top:6px}
 .lcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
 .lcard{border-radius:var(--r);border:2px solid var(--tinta);background:var(--crema);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
-.lcard .im{aspect-ratio:4/3;background:var(--paper);display:grid;place-items:center;position:relative}
-.lcard .im img{width:100%;height:100%;object-fit:cover;display:block}
+.lcard .im{aspect-ratio:4/3;background:var(--paper);display:grid;place-items:center;position:relative;overflow:hidden;min-height:0}
+.lcard .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .lcard .im svg{width:60%;height:60%;opacity:.5}
 .lcard .st{position:absolute;left:10px;top:10px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border:2px solid var(--tinta);border-radius:999px;padding:4px 10px;background:var(--paper)}
 .lcard .st.perdido{background:var(--coral)} .lcard .st.avistado{background:var(--lima)} .lcard .st.recogido{background:var(--tinta);color:var(--crema)}
