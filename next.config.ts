@@ -21,6 +21,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"] },
+  // La sección se llamaba /madrinas: redirección permanente para no perder enlaces ni lo indexado.
+  async redirects() {
+    return [{ source: "/madrinas", destination: "/embajadores", permanent: true }];
+  },
   async headers() {
     return [{
       source: "/:path*",

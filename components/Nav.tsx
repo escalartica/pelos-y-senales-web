@@ -11,10 +11,10 @@ const LINKS = [
   { href: "/protectoras", label: "Protectoras" },
   { href: "/mapa", label: "Mapa" },
   { href: "/perdidos", label: "Perdidos" },
-  { href: "/madrinas", label: "Embajadores" },
+  { href: "/embajadores", label: "Embajadores" },
   { href: "/colabora", label: "Colabora" },
 ];
-const MENU = [["/match", "Haz match"], ["/perros", "Todos los peludos"], ["/descubrir", "Descubrir uno a uno"], ["/protectoras", "Protectoras"], ["/mapa", "Mapa de entidades"], ["/perdidos", "Perdidos y avistados"], ["/madrinas", "Embajadores"], ["/#pandilla", "La pandilla"], ["/colabora", "Colabora"], ["/#faq", "Preguntas"]];
+const MENU = [["/match", "Haz match"], ["/perros", "Todos los peludos"], ["/descubrir", "Descubrir uno a uno"], ["/protectoras", "Protectoras"], ["/mapa", "Mapa de entidades"], ["/perdidos", "Perdidos y avistados"], ["/embajadores", "Embajadores"], ["/#pandilla", "La pandilla"], ["/colabora", "Colabora"], ["/#faq", "Preguntas"]];
 
 export default function Nav() {
   const path = usePathname();
