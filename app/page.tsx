@@ -168,9 +168,9 @@ export default async function Home() {
           <Reveal className="mteaser">
             <div>
               <span className="eyebrow">Embajadores</span>
-              <h2>Gente que presta su voz a un perro.</h2>
+              <h2>Gente que presta su voz.</h2>
               <p className="lead" style={{ marginTop: 14 }}>Nuestros embajadores acompañan a los perros del proyecto: comparten sus fichas, cuentan sus historias y, si pueden, vienen a una sesión. Hasta que tengan casa.</p>
-              <p className="hand" style={{ marginTop: 14 }}>Ni dinero ni exclusividad. Solo su voz.</p>
+              <p className="hand" style={{ marginTop: 14 }}><span className="subr">Ni dinero ni exclusividad. Solo su voz.</span></p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}><Link className="btn" href="/madrinas">Conócelos <span className="ic">→</span></Link><Link className="btn ghost" href="/colabora#contacto">Quiero ser embajador</Link></div>
             </div>
             {MADRINAS.length > 0 ? <div className="mgrid">{MADRINAS.slice(0, 3).map((m, i) => <MadrinaCard key={m.id} m={m} i={i} d={m.perro ? getDogIn(cat, m.perro) : undefined} />)}</div>

@@ -15,9 +15,9 @@ export default async function Madrinas() {
   const MADRINAS = cat.madrinas.filter((m) => m.foto || m.perro);
   return (
     <main>
-      <div className="wrap listhead">
+      <div className="wrap listhead emb">
         <span className="eyebrow">Embajadores</span>
-        <h1>Gente que presta su voz a un perro.</h1>
+        <h1>Gente que presta su voz.</h1>
         <p className="lead">Gente con voz y con público que la presta a los perros del proyecto: comparte sus fichas, cuenta sus historias y nos ayuda a llegar a quien puede adoptar. Cada embajador o embajadora elige a un perro y lo acompaña hasta que tiene casa.</p>
         <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser embajador</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
       </div>

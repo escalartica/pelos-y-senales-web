@@ -1051,3 +1051,24 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
 .lolat{display:block;border:2px solid var(--tinta);border-radius:var(--r);overflow:hidden;background:var(--crema);color:var(--tinta);text-decoration:none}
 .lolat img{display:block;width:100%;height:auto}
 .lolat span{display:block;padding:12px 16px;font-weight:700;font-size:15px;border-top:2px solid var(--tinta)}
+
+/* ---- Embajadores: entrada escalonada y movimiento suave ---- */
+.mteaser.rv,.lola.rv{transform:none;filter:none;opacity:1}
+.mteaser>div:first-child>*,.lola .txt>*{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .8s cubic-bezier(.32,.72,0,1)}
+.mteaser.in>div:first-child>*,.lola.in .txt>*{opacity:1;transform:none}
+.mteaser>div:first-child>*:nth-child(2),.lola .txt>*:nth-child(2){transition-delay:.09s}
+.mteaser>div:first-child>*:nth-child(3),.lola .txt>*:nth-child(3){transition-delay:.18s}
+.mteaser>div:first-child>*:nth-child(4),.lola .txt>*:nth-child(4){transition-delay:.27s}
+.mteaser>div:first-child>*:nth-child(5),.lola .txt>*:nth-child(5){transition-delay:.36s}
+.lola .txt>*:nth-child(6){transition-delay:.45s}
+.mteaser>.lolat,.mteaser>.mgrid,.lola>figure{opacity:0;transform:translateY(26px) rotate(-3deg) scale(.95);transition:opacity .8s .15s,transform 1s .15s cubic-bezier(.32,.72,0,1)}
+.mteaser.in>.lolat,.mteaser.in>.mgrid,.lola.in>figure{opacity:1;transform:none}
+.mteaser.in>.lolat{animation:embfloat 7s 1.3s ease-in-out infinite}
+.mteaser.in>.lolat:hover{animation-play-state:paused}
+@keyframes embfloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(.8deg)}}
+.subr{background:linear-gradient(var(--mostaza),var(--mostaza)) 0 88%/0 .34em no-repeat;transition:background-size .9s .7s cubic-bezier(.32,.72,0,1)}
+.in .subr{background-size:100% .34em}
+.listhead.emb>*{animation:embin .8s cubic-bezier(.32,.72,0,1) both}
+.listhead.emb>*:nth-child(2){animation-delay:.08s}.listhead.emb>*:nth-child(3){animation-delay:.16s}.listhead.emb>*:nth-child(4){animation-delay:.24s}
+@keyframes embin{from{opacity:0;transform:translateY(18px)}}
+@media (prefers-reduced-motion:reduce){.mteaser>div:first-child>*,.lola .txt>*,.mteaser>.lolat,.mteaser>.mgrid,.lola>figure{opacity:1;transform:none}.subr{background-size:100% .34em}}
