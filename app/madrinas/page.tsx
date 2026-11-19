@@ -4,9 +4,9 @@ import Reveal from "@/components/Reveal";
 import MadrinaCard from "@/components/MadrinaCard";
 import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 
-export const metadata: Metadata = { alternates: { canonical: "/madrinas" }, title: "Madrinas y padrinos", description: "Personas conocidas que prestan su voz a un perro del proyecto: comparten su ficha, cuentan su historia y vienen a la sesión si pueden." };
+export const metadata: Metadata = { alternates: { canonical: "/madrinas" }, title: "Embajadores", description: "Los embajadores de Pelos y Señales prestan su voz a los perros del proyecto: comparten su ficha, cuentan su historia y vienen a la sesión si pueden." };
 
-const PEDIMOS = [["Una frase", "Para la ficha de su ahijado o ahijada. Con su nombre, en sus palabras."], ["Una publicación al mes", "Su ahijado en sus redes, con el enlace a la ficha. Nosotros preparamos el material."], ["Venir si pueden", "A la sesión de fotos o a la exposición. Sin obligación: ya ayudan con lo anterior."], ["Cuando se adopta, contarlo", "La mejor noticia es la que cierra el círculo. Y elegir otro ahijado, si quieren."]];
+const PEDIMOS = [["Una frase", "Para la ficha del perro al que acompaña. Con su nombre, en sus palabras."], ["Una publicación al mes", "Su perro en sus redes, con el enlace a la ficha. Nosotros preparamos el material."], ["Venir si pueden", "A la sesión de fotos o a la exposición. Sin obligación: ya ayudan con lo anterior."], ["Cuando se adopta, contarlo", "La mejor noticia es la que cierra el círculo. Y elegir otro perro, si quieren."]];
 const NO = ["No les pedimos dinero.", "No hay exclusividad: pueden apoyar a otras causas.", "No firman nada; se van cuando quieran.", "No eligen quién adopta: eso lo hace la protectora."];
 
 export default async function Madrinas() {
@@ -16,10 +16,10 @@ export default async function Madrinas() {
   return (
     <main>
       <div className="wrap listhead">
-        <span className="eyebrow">Madrinas y padrinos</span>
-        <h1>Gente conocida que presta su voz a un perro.</h1>
-        <p className="lead">Gente con voz y con público que la presta a los perros del proyecto: comparte sus fichas, cuenta sus historias y nos ayuda a llegar a quien puede adoptar. Cada madrina o padrino elige a un perro y lo acompaña hasta que tiene casa.</p>
-        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser madrina o padrino</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
+        <span className="eyebrow">Embajadores</span>
+        <h1>Gente que presta su voz a un perro.</h1>
+        <p className="lead">Gente con voz y con público que la presta a los perros del proyecto: comparte sus fichas, cuenta sus historias y nos ayuda a llegar a quien puede adoptar. Cada embajador o embajadora elige a un perro y lo acompaña hasta que tiene casa.</p>
+        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser embajador</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
       </div>
 
       {MADRINAS.length > 0 && <section className="band" style={{ paddingTop: 10 }}>

@@ -60,7 +60,7 @@ export default async function Ficha({ params }: Props) {
             <div className="section"><h2>Cómo es</h2><p>{d.desc}</p><p style={{ marginTop: 10 }}>{d.pers}</p></div>
             <div className="section"><h2>Lo que necesita</h2><ul>{d.nec.map((x) => <li key={x}>{x}</li>)}{d.esp && <li><b>Necesidades especiales:</b> {d.espTxt}</li>}</ul></div>
             <div className="section"><h2>Su historia</h2><p>{d.hist}</p></div>
-            {mad && <div className="madbox"><span className="eyebrow">{d.sexo === "hembra" ? "Su madrina o padrino" : "Su padrino o madrina"}</span>{mad.frase && <p className="mq">«{mad.frase}»</p>}<p className="who"><b>{mad.n}</b> · {mad.rol} · <Link href="/madrinas">Ver madrinas y padrinos</Link></p></div>}
+            {mad && <div className="madbox"><span className="eyebrow">{"Su embajador o embajadora"}</span>{mad.frase && <p className="mq">«{mad.frase}»</p>}<p className="who"><b>{mad.n}</b> · {mad.rol} · <Link href="/madrinas">Ver embajadores</Link></p></div>}
             <Orient d={d} />
             <div className="contactbox" id="protectora">
               <h2>Habla con su protectora</h2>

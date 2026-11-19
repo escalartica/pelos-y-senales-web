@@ -22,7 +22,7 @@ export const MADRINAS: Madrina[] = [
     id: "marisol-bizcocho",
     n: "Marisol Bizcocho",
     rol: "Cantante",
-    bio: "Cantante andaluza de sevillanas, tangos y rumbas con aire flamenco-pop. Es la primera madrina de Pelos y Señales.",
+    bio: "Cantante andaluza de sevillanas, tangos y rumbas con aire flamenco-pop. Es la primera embajadora de Pelos y Señales.",
     redes: {},
     c: "m",
   },

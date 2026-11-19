@@ -167,11 +167,11 @@ export default async function Home() {
         <div className="wrap">
           <Reveal className="mteaser">
             <div>
-              <span className="eyebrow">Madrinas y padrinos</span>
-              <h2>Gente conocida que presta su voz a un perro.</h2>
-              <p className="lead" style={{ marginTop: 14 }}>Cada madrina o padrino acompaña a los perros del proyecto: comparte sus fichas, cuenta sus historias y, si puede, viene a una sesión. Hasta que tengan casa.</p>
+              <span className="eyebrow">Embajadores</span>
+              <h2>Gente que presta su voz a un perro.</h2>
+              <p className="lead" style={{ marginTop: 14 }}>Nuestros embajadores acompañan a los perros del proyecto: comparten sus fichas, cuentan sus historias y, si pueden, vienen a una sesión. Hasta que tengan casa.</p>
               <p className="hand" style={{ marginTop: 14 }}>Ni dinero ni exclusividad. Solo su voz.</p>
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}><Link className="btn" href="/madrinas">Conócelas <span className="ic">→</span></Link><Link className="btn ghost" href="/colabora#contacto">Quiero apadrinar</Link></div>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}><Link className="btn" href="/madrinas">Conócelos <span className="ic">→</span></Link><Link className="btn ghost" href="/colabora#contacto">Quiero ser embajador</Link></div>
             </div>
             {MADRINAS.length > 0 ? <div className="mgrid">{MADRINAS.slice(0, 3).map((m, i) => <MadrinaCard key={m.id} m={m} i={i} d={m.perro ? getDogIn(cat, m.perro) : undefined} />)}</div>
               : <Link href="/madrinas#mini-embajadora" className="lolat" aria-label="Lola, nuestra mini embajadora"><img src="/img/embajadoras/lola-estudio.jpg" alt="Lola, mini embajadora de Pelos y Señales, en el estudio con su perro Chico" width={1800} height={1200} loading="lazy" /><span>Lola, nuestra mini embajadora, con Chico</span></Link>}

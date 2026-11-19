@@ -24,7 +24,7 @@ export default function MadrinaCard({ m, i = 0, as: H = "h3", d }: { m: Madrina;
       <div className="mbody">
         <small className="mrol">{m.rol}</small>
         <H>{m.n}</H>
-        {d && <p className="mahij">Apadrina a <Link href={`/perros/${d.id}`}>{d.n}</Link>{d.estado !== "disponible" ? ` · ${d.estado === "adoptado" ? "ya adoptado" : "en proceso"}` : ""}</p>}
+        {d && <p className="mahij">Acompaña a <Link href={`/perros/${d.id}`}>{d.n}</Link>{d.estado !== "disponible" ? ` · ${d.estado === "adoptado" ? "ya adoptado" : "en proceso"}` : ""}</p>}
         {m.frase ? <p className="mq">«{m.frase}»</p> : <p className="mq" style={{ fontStyle: "normal" }}>{m.bio}</p>}
         {redes.length > 0 && <div className="mredes" aria-label={`Redes de ${m.n}`}>
           {redes.map((k) => <a key={k} className="rpill" href={RED_URL[k](m.redes[k]!)} target="_blank" rel="noopener noreferrer" aria-label={`${RED_TXT[k]} de ${m.n}`}>{ICONS[k]}<span>{RED_TXT[k]}</span></a>)}

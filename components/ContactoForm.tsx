@@ -7,7 +7,7 @@ function mailtoFallback(subject: string, body: string) {
   return `mailto:info@xn--pelosyseales-hhb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-const TIPOS = ["Soy una protectora o un centro", "Quiero añadir o corregir una entidad del mapa", "Tengo una clínica, tienda o peluquería", "Quiero acoger la exposición", "Quiero ser madrina, padrino o voluntario", "Prensa o instituciones", "Otra cosa"];
+const TIPOS = ["Soy una protectora o un centro", "Quiero añadir o corregir una entidad del mapa", "Tengo una clínica, tienda o peluquería", "Quiero acoger la exposición", "Quiero ser embajador o voluntario", "Prensa o instituciones", "Otra cosa"];
 
 /** Formulario general de contacto: llega al buzón del equipo. Datos mínimos, aviso de privacidad y campo cebo. */
 export default function ContactoForm({ tipo = "", titulo = "Escríbenos" }: { tipo?: string; titulo?: string }) {
