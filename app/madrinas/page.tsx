@@ -10,7 +10,9 @@ const PEDIMOS = [["Una frase", "Para la ficha de su ahijado o ahijada. Con su no
 const NO = ["No les pedimos dinero.", "No hay exclusividad: pueden apoyar a otras causas.", "No firman nada; se van cuando quieran.", "No eligen quién adopta: eso lo hace la protectora."];
 
 export default async function Madrinas() {
-  const cat = await getCatalog(); const MADRINAS = cat.madrinas;
+  const cat = await getCatalog();
+  // Una madrina o padrino se muestra cuando ya tiene foto propia o ahijado: sin ninguna de las dos la tarjeta sale vacía.
+  const MADRINAS = cat.madrinas.filter((m) => m.foto || m.perro);
   return (
     <main>
       <div className="wrap listhead">
@@ -20,9 +22,25 @@ export default async function Madrinas() {
         <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser madrina o padrino</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
       </div>
 
-      <section className="band" style={{ paddingTop: 10 }}>
+      {MADRINAS.length > 0 && <section className="band" style={{ paddingTop: 10 }}>
         <div className="wrap">
           <Reveal className="mgrid">{MADRINAS.map((m, i) => <MadrinaCard key={m.id} m={m} i={i} as="h2" d={m.perro ? getDogIn(cat, m.perro) : undefined} />)}</Reveal>
+        </div>
+      </section>}
+
+      <section className="band" id="mini-embajadora" style={{ paddingTop: MADRINAS.length ? 0 : 44 }}>
+        <div className="wrap">
+          <Reveal className="lola">
+            <figure><img src="/img/embajadoras/lola-retrato.jpg" alt="Lola, mini embajadora de Pelos y Señales, con su perro Chico en brazos" width={1200} height={1800} loading="lazy" /></figure>
+            <div className="txt">
+              <span className="eyebrow">Mini embajadora</span>
+              <h2>Lola, la voz más joven de Pelos y Señales.</h2>
+              <p>Lola es nuestra mini embajadora. Se ha puesto la camiseta y ha posado con su peludo Chico con la misma naturalidad que los perros a los que queremos dar voz.</p>
+              <p>Además de ayudar acompañándonos a algunas protectoras, nuestra pequeña todoterreno será la encargada de contar el proyecto entre los más jóvenes.</p>
+              <p className="hand">Gracias, Lola. Contigo llegamos a quienes van a decidir cómo se trata a los animales mañana.</p>
+              <figure><img src="/img/embajadoras/lola-estudio.jpg" alt="Lola sentada en el estudio con la camiseta de Pelos y Señales, acariciando a su perro Chico" width={1800} height={1200} loading="lazy" /></figure>
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -20,7 +20,7 @@ import Seal from "@/components/Seal";
 import HomeAvisos from "@/components/HomeAvisos";
 
 export default async function Home() {
-  const cat = await getCatalog(); const DOGS = cat.dogs; const PROT = cat.prot; const MADRINAS = cat.madrinas;
+  const cat = await getCatalog(); const DOGS = cat.dogs; const PROT = cat.prot; const MADRINAS = cat.madrinas.filter((m) => m.foto || m.perro);
   const destacados = DOGS.filter((d) => d.estado === "disponible").slice(0, 3);
   const nProt = Object.keys(PROT).length;
   const usadas = new Set(DOGS.flatMap((d) => [d.photo, ...(d.photos ?? []).map((x) => x.src)]));
@@ -173,7 +173,8 @@ export default async function Home() {
               <p className="hand" style={{ marginTop: 14 }}>Ni dinero ni exclusividad. Solo su voz.</p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 18 }}><Link className="btn" href="/madrinas">Conócelas <span className="ic">→</span></Link><Link className="btn ghost" href="/colabora#contacto">Quiero apadrinar</Link></div>
             </div>
-            <div className="mgrid">{MADRINAS.slice(0, 3).map((m, i) => <MadrinaCard key={m.id} m={m} i={i} d={m.perro ? getDogIn(cat, m.perro) : undefined} />)}</div>
+            {MADRINAS.length > 0 ? <div className="mgrid">{MADRINAS.slice(0, 3).map((m, i) => <MadrinaCard key={m.id} m={m} i={i} d={m.perro ? getDogIn(cat, m.perro) : undefined} />)}</div>
+              : <Link href="/madrinas#mini-embajadora" className="lolat" aria-label="Lola, nuestra mini embajadora"><img src="/img/embajadoras/lola-estudio.jpg" alt="Lola, mini embajadora de Pelos y Señales, en el estudio con su perro Chico" width={1800} height={1200} loading="lazy" /><span>Lola, nuestra mini embajadora, con Chico</span></Link>}
           </Reveal>
         </div>
       </section>

@@ -1038,3 +1038,16 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
 .ag-movil code{display:block;overflow-wrap:anywhere;font-size:.78rem;background:#F5EFE3;border-radius:8px;padding:8px 10px;margin-top:8px}
 .ag-movil .ag-nota{font-size:.82rem;opacity:.75}
 @media (max-width:760px){.ag-movil-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Mini embajadora (madrinas): dos fotos enteras, sin recorte, junto al texto */
+.lola{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(22px,4vw,52px);align-items:start}
+.lola figure{margin:0;border:2px solid var(--tinta);border-radius:var(--r);overflow:hidden;background:var(--crema)}
+.lola figure img{display:block;width:100%;height:auto}
+.lola .txt{display:grid;gap:16px;align-content:start}
+.lola .txt h2{margin-bottom:4px}
+.lola .txt p{max-width:58ch}
+.lola .txt figure{margin-top:10px}
+@media (max-width:820px){.lola{grid-template-columns:1fr}}
+.lolat{display:block;border:2px solid var(--tinta);border-radius:var(--r);overflow:hidden;background:var(--crema);color:var(--tinta);text-decoration:none}
+.lolat img{display:block;width:100%;height:auto}
+.lolat span{display:block;padding:12px 16px;font-weight:700;font-size:15px;border-top:2px solid var(--tinta)}
