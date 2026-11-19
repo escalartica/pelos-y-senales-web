@@ -1072,3 +1072,12 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
 .listhead.emb>*:nth-child(2){animation-delay:.08s}.listhead.emb>*:nth-child(3){animation-delay:.16s}.listhead.emb>*:nth-child(4){animation-delay:.24s}
 @keyframes embin{from{opacity:0;transform:translateY(18px)}}
 @media (prefers-reduced-motion:reduce){.mteaser>div:first-child>*,.lola .txt>*,.mteaser>.lolat,.mteaser>.mgrid,.lola>figure{opacity:1;transform:none}.subr{background-size:100% .34em}}
+
+/* ---- Minisesiones solidarias (Colabora) ---- */
+.mini{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(22px,4vw,52px);align-items:center}
+.mini .txt{display:grid;gap:16px;align-content:start}
+.mini .fotos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mini figure{margin:0;border:2px solid var(--tinta);border-radius:var(--r);overflow:hidden;background:var(--crema)}
+.mini figure:nth-child(2){transform:translateY(22px)}
+.mini figure img{display:block;width:100%;height:auto}
+@media (max-width:860px){.mini{grid-template-columns:1fr}.mini figure:nth-child(2){transform:none}}

@@ -44,6 +44,22 @@ export default function Colabora() {
           <Reveal className="ways">{WAYS.map(([b, p]) => <div key={b} className="way"><b>{b}</b><p>{p}</p></div>)}<div className="way" style={{ background: "var(--tinta)", color: "var(--crema)", borderColor: "var(--tinta)" }}><b>Y una más</b><p style={{ color: "rgba(244,236,220,.75)" }}>Si trabajas en una clínica o una tienda, pide una placa QR de tu zona para el mostrador.</p></div></Reveal>
         </div>
       </section>
+      <section className="band" id="minisesiones">
+        <div className="wrap"><Reveal className="mini">
+          <div className="txt">
+            <span className="eyebrow">Otra forma de colaborar</span>
+            <h2>Minisesiones solidarias</h2>
+            <p className="lead">Un retrato divertido de tu animal en un turno corto. Con cada minisesión colaboras con Pelos y Señales, en beneficio de los perros de protectora que todavía esperan casa.</p>
+            <p>Dorian y su hermano peludo Konchu vinieron a pasarlo en grande delante de la cámara. Se llevaron un recuerdo lleno de risas y lametones… y, sin darse cuenta, ayudaron a que otros perros de Pelos y Señales estén un poco más cerca de encontrar su hogar.</p>
+            <p className="hand">¿Os animáis a ser los siguientes? Una minisesión, un recuerdo para siempre y un gesto que cambia vidas.</p>
+            <div><a className="btn" href="#contacto">Quiero una minisesión <span className="ic">→</span></a></div>
+          </div>
+          <div className="fotos">
+            <figure><img src="/img/minisesiones/dorian-konchu-minisesion.jpg" alt="Dorian, un bebé con la camiseta de Pelos y Señales, riendo junto a su perro Konchu, un teckel con sudadera azul, sobre fondo mostaza" width={1200} height={1799} loading="lazy" /></figure>
+            <figure><img src="/img/minisesiones/konchu-minisesion.jpg" alt="Konchu, un teckel con sudadera azul, mirando a cámara con la lengua fuera sobre fondo mostaza" width={1200} height={1800} loading="lazy" /></figure>
+          </div>
+        </Reveal></div>
+      </section>
       <section className="band" id="contacto">
         <div className="wrap"><Reveal className="split">
           <div><span className="eyebrow">Escríbenos</span><h2>Veinte minutos para escucharte.</h2><p className="lead">En la primera conversación solo pedimos eso: escuchar qué necesitáis y, si encaja, una segunda llamada para estudiar una colaboración piloto. Nada más.</p><p className="contactbig"><a href="mailto:info@xn--pelosyseales-hhb.com">info@pelosyseñales.com</a></p><p style={{ marginTop: 10, fontWeight: 700 }}><a href="tel:+34635025378">+34 635 025 378</a> · <a href="https://www.instagram.com/pelosysenales.es/" target="_blank" rel="noopener noreferrer">@pelosysenales.es</a></p></div>
