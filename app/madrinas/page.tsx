@@ -18,7 +18,7 @@ export default async function Madrinas() {
       <div className="wrap listhead emb">
         <span className="eyebrow">Embajadores</span>
         <h1>Gente que presta su voz.</h1>
-        <p className="lead">Gente con voz y con público que la presta a los perros del proyecto: comparte sus fichas, cuenta sus historias y nos ayuda a llegar a quien puede adoptar. Cada embajador o embajadora elige a un perro y lo acompaña hasta que tiene casa.</p>
+        <p className="lead">Corazones solidarios que serán nuestro altavoz para hacer realidad que el máximo número de familias y peludos se encuentren.</p>
         <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser embajador</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
       </div>
 
