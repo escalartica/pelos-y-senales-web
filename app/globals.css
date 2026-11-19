@@ -1081,3 +1081,9 @@ a.rpill:hover{background:var(--tinta);color:var(--crema)}
 .minis figure:nth-child(2){transform:translateY(22px)}
 .minis figure img{display:block;width:100%;height:auto}
 @media (max-width:860px){.minis{grid-template-columns:1fr}.minis figure:nth-child(2){transform:none}}
+
+.minimodos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.minimodos>div{border:2px solid var(--tinta);border-radius:var(--r);padding:16px;background:var(--paper)}
+.minimodos b{display:block;font-family:var(--f-display);font-variation-settings:var(--soft);font-weight:800;font-size:19px;margin-bottom:4px}
+.minimodos p{font-size:14px;line-height:1.45;color:var(--ink-60)}
+@media (max-width:520px){.minimodos{grid-template-columns:1fr}}

@@ -6,7 +6,7 @@ import { getCatalog, getDogIn, dogsOfIn, madrinaOfIn } from "@/lib/catalog";
 
 export const metadata: Metadata = { alternates: { canonical: "/embajadores" }, title: "Embajadores", description: "Los embajadores de Pelos y Señales prestan su voz a los perros del proyecto: comparten su ficha, cuentan su historia y vienen a la sesión si pueden." };
 
-const PEDIMOS = [["Una frase", "Para la ficha del perro al que acompaña. Con su nombre, en sus palabras."], ["Una publicación al mes", "Su perro en sus redes, con el enlace a la ficha. Nosotros preparamos el material."], ["Venir si pueden", "A la sesión de fotos o a la exposición. Sin obligación: ya ayudan con lo anterior."], ["Cuando se adopta, contarlo", "La mejor noticia es la que cierra el círculo. Y elegir otro perro, si quieren."]];
+const PEDIMOS = [["Una frase", "Para las fichas de los perros del proyecto. Con su nombre, en sus palabras."], ["Una publicación al mes", "Un perro del proyecto en sus redes, con el enlace a su ficha. Nosotros preparamos el material."], ["Venir si pueden", "A la sesión de fotos o a la exposición. Sin obligación: ya ayudan con lo anterior."], ["Cuando se adopta, contarlo", "La mejor noticia es la que cierra el círculo. Y seguir con el siguiente, si quieren."]];
 const NO = ["No les pedimos dinero.", "No hay exclusividad: pueden apoyar a otras causas.", "No firman nada; se van cuando quieran.", "No eligen quién adopta: eso lo hace la protectora."];
 
 export default async function Madrinas() {
@@ -18,8 +18,8 @@ export default async function Madrinas() {
       <div className="wrap listhead emb">
         <span className="eyebrow">Embajadores</span>
         <h1>Gente que presta su voz.</h1>
-        <p className="lead">Corazones solidarios que serán nuestro altavoz para hacer realidad que el máximo número de familias y peludos se encuentren.</p>
-        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero ser embajador</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
+        <p className="lead">Corazones solidarios que nos prestan su altavoz para que cada vez más familias y peludos se encuentren.</p>
+        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora?tipo=madrina#contacto">Quiero ser embajador</Link><Link className="btn ghost" href="/perros">Ver los peludos</Link></div>
       </div>
 
       {MADRINAS.length > 0 && <section className="band" style={{ paddingTop: 10 }}>
@@ -56,7 +56,7 @@ export default async function Madrinas() {
               <img src="/brand/perro-scottie.svg" alt="" style={{ width: 150, height: 150 }} />
               <span className="eyebrow">Y lo que no</span>
               <ul className="mno">{NO.map((x) => <li key={x}>{x}</li>)}</ul>
-              <Link className="btn" href="/colabora#contacto">Proponer a alguien <span className="ic">→</span></Link>
+              <Link className="btn" href="/colabora?tipo=madrina#contacto">Proponer a alguien <span className="ic">→</span></Link>
             </div>
           </Reveal>
         </div>

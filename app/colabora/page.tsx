@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import Image from "next/image";
 import { foco } from "@/lib/foco";
 import ContactoForm from "@/components/ContactoForm";
-export const metadata: Metadata = { alternates: { canonical: "/colabora" }, title: "Colabora", description: "Protectoras, instituciones, veterinarios, educadores, peluquerías, comercios y seis maneras de ayudar." };
+export const metadata: Metadata = { alternates: { canonical: "/colabora" }, title: "Colabora", description: "Protectoras, instituciones, veterinarios, educadores, peluquerías, comercios, minisesiones solidarias y seis maneras de ayudar." };
 const QUIEN = [
   ["🩺", "Clínicas y hospitales veterinarios", "Revisión inicial, vacunas, microchip y esterilización a tarifa solidaria. Un bono de bienvenida para quien adopta con nosotros.", "Prioridad alta"],
   ["🎓", "Educadores caninos", "Sesiones de adaptación en las primeras semanas en casa, cuando más se devuelven perros. Charlas de convivencia en los centros.", "Prioridad alta"],
@@ -15,12 +15,11 @@ const QUIEN = [
   ["📚", "Universidades y centros educativos", "Voluntariado estable, prácticas compatibles con la normativa y campañas de sensibilización en el aula.", ""],
   ["🎪", "Asociaciones vecinales y ferias", "Un stand, una recogida de alimentos o una jornada de adopción en la fiesta del barrio. Con permiso municipal y plan de bienestar.", ""],
 ];
-const KIT = [["Revisión veterinaria", "Chequeo en los primeros quince días, con la clínica colaboradora de tu zona."], ["Sesión con un educador", "Una hora para la adaptación: paseos, soledad, convivencia."], ["Baño de bienvenida", "En la peluquería colaboradora más cercana."], ["Primer saco de pienso", "Para empezar sin prisas. El resto lo pone la familia."]];
-const WAYS = [["Adoptar", "La forma más directa. Haz match, conoce al perro y sigue el proceso de su protectora."], ["Acoger", "Un perro en tu casa unas semanas mientras encuentra la suya."], ["Apadrinar", "Paga la comida o el veterinario de un perro concreto. Te contamos cómo le va."], ["Ser voluntario", "Pasear, limpiar, sujetar en una sesión de fotos. Más manos en los centros es el segundo objetivo del proyecto."], ["Compartir", "Una ficha en tu historia llega a gente a la que nosotros no llegamos."], ["Acoger la exposición", "¿Tienes un bar, una tienda, una sala? Un mes con veinte perros en la pared."]];
+const WAYS = [["Adoptar", "La forma más directa. Haz match, conoce al perro y sigue el proceso de su protectora."], ["Acoger", "Un perro en tu casa unas semanas mientras encuentra la suya."], ["Ser voluntario", "Pasear, limpiar, sujetar en una sesión de fotos."], ["Compartir", "Una ficha en tu historia llega a gente a la que nosotros no llegamos."], ["Acoger la exposición", "¿Tienes un bar, una tienda, una sala? Un mes con veinte perros en la pared."], ["Una minisesión solidaria", "Un retrato de tu peludo en nuestro stand o en el estudio. Con cada una colaboras con el proyecto."]];
 export default function Colabora() {
   return (
     <main>
-      <div className="wrap listhead"><span className="eyebrow">Colabora</span><h1>Para quien tiene perros, para quien tiene sedes y para quien quiere volver algo a los centros.</h1></div>
+      <div className="wrap listhead"><span className="eyebrow">Colabora</span><h1>Colabora a tu manera.</h1></div>
       <section className="band" id="protectoras" style={{ paddingTop: 40 }}>
         <div className="wrap"><Reveal className="trio">
           <article className="tcard l"><span className="phase">Protectoras y centros</span><h2>Una mañana. Fotos para siempre.</h2><p>Vosotros ponéis los perros y una persona que los conozca. Nosotros, el equipo, el material y las fichas. Participar en el piloto no tiene coste y vosotros mantenéis el control del proceso de adopción.</p><ul><li>Sesión en vuestro centro</li><li>Perfiles publicados solo con vuestra autorización escrita</li><li>Las consultas os llegan a vosotros, con los datos mínimos</li><li>Podéis corregir, pausar o retirar una ficha cuando queráis</li></ul><a className="btn" href="#contacto">Pedir una reunión de 20 minutos</a></article>
@@ -32,10 +31,6 @@ export default function Colabora() {
         <div className="wrap">
           <Reveal className="head"><span className="eyebrow">Con quién queremos contar</span><h2>Lo que le pedimos a cada uno es concreto y cabe en una frase.</h2><p className="lead">A cada uno le proponemos algo pequeño, concreto y medible. Si te ves en esta lista, escríbenos.</p></Reveal>
           <Reveal className="cgrid">{QUIEN.map(([ico, b, p, tag]) => <article key={b} className="ccard"><span className="ico" aria-hidden="true">{ico}</span><b>{b}</b><p>{p}</p>{tag && <small>{tag}</small>}</article>)}</Reveal>
-          <Reveal className="split" style={{ marginTop: 48, alignItems: "start" }}>
-            <div><span className="eyebrow">A dónde va todo eso</span><h2>El kit de bienvenida de quien adopta.</h2><p className="lead" style={{ marginTop: 14 }}>Cada colaboración se convierte en algo que recibe la familia en sus primeras semanas, cuando más ayuda hace falta. Lo montaremos zona a zona con los colaboradores de cada ciudad, a medida que se sumen.</p><p className="hand" style={{ marginTop: 12 }}>Adoptar no cuesta dinero. Empezar bien, tampoco debería.</p></div>
-            <div className="kit" style={{ gridTemplateColumns: "repeat(2,1fr)", marginTop: 0 }}>{KIT.map(([b, p]) => <div key={b}><b>{b}</b><p>{p}</p></div>)}</div>
-          </Reveal>
         </div>
       </section>
       <section className="band crema" id="sedes">
@@ -52,7 +47,8 @@ export default function Colabora() {
             <p className="lead">Un retrato divertido de tu animal en un turno corto. Con cada minisesión colaboras con Pelos y Señales, en beneficio de los perros de protectora que todavía esperan casa.</p>
             <p>Dorian y su hermano peludo Konchu vinieron a pasarlo en grande delante de la cámara. Se llevaron un recuerdo lleno de risas y lametones… y, sin darse cuenta, ayudaron a que otros perros de Pelos y Señales estén un poco más cerca de encontrar su hogar.</p>
             <p className="hand">¿Os animáis a ser los siguientes? Una minisesión, un recuerdo para siempre y un gesto que cambia vidas.</p>
-            <div><a className="btn" href="#contacto">Quiero una minisesión <span className="ic">→</span></a></div>
+            <div className="minimodos"><div><b>En nuestro stand</b><p>En exposiciones, conciertos y otros eventos donde esté Pelos y Señales. Sin reserva: te acercas y la hacemos en el momento.</p></div><div><b>En el estudio de fotografía</b><p>Con día y hora reservados. Escríbenos y buscamos un hueco.</p></div></div>
+            <div><a className="btn" href="/colabora?tipo=minisesion#contacto">Quiero una minisesión <span className="ic">→</span></a></div>
           </div>
           <div className="fotos">
             <figure><img src="/img/minisesiones/dorian-konchu-minisesion.jpg" alt="Dorian, un bebé con la camiseta de Pelos y Señales, riendo junto a su perro Konchu, un teckel con sudadera azul, sobre fondo mostaza" width={1200} height={1799} loading="lazy" /></figure>

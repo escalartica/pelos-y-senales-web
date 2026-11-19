@@ -7,13 +7,13 @@ function mailtoFallback(subject: string, body: string) {
   return `mailto:info@xn--pelosyseales-hhb.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-const TIPOS = ["Soy una protectora o un centro", "Quiero añadir o corregir una entidad del mapa", "Tengo una clínica, tienda o peluquería", "Quiero acoger la exposición", "Quiero ser embajador o voluntario", "Prensa o instituciones", "Otra cosa"];
+const TIPOS = ["Soy una protectora o un centro", "Quiero añadir o corregir una entidad del mapa", "Tengo una clínica, tienda o peluquería", "Quiero acoger la exposición", "Quiero ser embajador o voluntario", "Quiero una minisesión solidaria", "Prensa o instituciones", "Otra cosa"];
 
 /** Formulario general de contacto: llega al buzón del equipo. Datos mínimos, aviso de privacidad y campo cebo. */
 export default function ContactoForm({ tipo = "", titulo = "Escríbenos" }: { tipo?: string; titulo?: string }) {
   const [st, setSt] = useState<{ ok?: boolean; msg: string; mail?: string } | null>(null); const [busy, setBusy] = useState(false);
   const sel = useRef<HTMLSelectElement>(null);
-  useEffect(() => { const t = new URLSearchParams(location.search).get("tipo"); const m: Record<string, string> = { mapa: TIPOS[1], placa: TIPOS[2], expo: TIPOS[3], madrina: TIPOS[4] }; if (t && m[t] && sel.current) sel.current.value = m[t]; }, []);
+  useEffect(() => { const t = new URLSearchParams(location.search).get("tipo"); const m: Record<string, string> = { mapa: TIPOS[1], placa: TIPOS[2], expo: TIPOS[3], madrina: TIPOS[4], minisesion: TIPOS[5] }; if (t && m[t] && sel.current) sel.current.value = m[t]; }, []);
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); const form = e.currentTarget; const fd = new FormData(form);
     const body = { nombre: String(fd.get("nombre") || "").trim(), email: String(fd.get("email") || "").trim(), tel: String(fd.get("tel") || "").trim(), tipo: String(fd.get("tipo") || ""), msg: String(fd.get("msg") || "").trim(), priv: fd.get("priv") === "on", web: String(fd.get("web") || "") };

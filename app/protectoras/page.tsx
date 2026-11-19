@@ -14,7 +14,7 @@ export default async function Protectoras() {
         <span className="eyebrow">Protectoras y centros</span>
         <h1>Protectoras: vosotras decidís, nosotras hacemos que os vean.</h1>
         <p className="lead">Vosotras y vuestro voluntariado hacéis lo más difícil: rescatar, curar y cuidar a cada perro hasta que llega su familia. Nuestro trabajo es que se os vea. Fotografiamos a vuestros perros sin coste, publicamos sus fichas con vuestra autorización y os pasamos las consultas de las familias. La valoración, el contrato y el seguimiento siguen siendo vuestros.</p>
-        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero participar con mi protectora</Link><Link className="btn ghost" href="/perros">Ver los perros</Link></div>
+        <div style={{ marginTop: 22, display: "flex", gap: 12, flexWrap: "wrap" }}><Link className="btn" href="/colabora#contacto">Quiero participar con mi protectora</Link><Link className="btn ghost" href="/perros">Ver los peludos</Link></div>
       </div>
       <div className="wrap">
         <Reveal className="prop">
