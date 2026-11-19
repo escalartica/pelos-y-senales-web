@@ -45,7 +45,7 @@ export default function Colabora() {
         </div>
       </section>
       <section className="band" id="minisesiones">
-        <div className="wrap"><Reveal className="mini">
+        <div className="wrap"><Reveal className="minis">
           <div className="txt">
             <span className="eyebrow">Otra forma de colaborar</span>
             <h2>Minisesiones solidarias</h2>
