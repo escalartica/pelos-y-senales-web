@@ -4,7 +4,7 @@ import Perdidos from "@/components/Perdidos";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = { alternates: { canonical: "/perdidos" },
-  title: "Perdidos y avistados",
+  title: "Perros perdidos y avistados",
   description: "Publica la ficha y el cartel de tu perro perdido, o dinos dónde has visto un perro suelto. Dos mapas que se cruzan y qué hacer para que no salga huyendo.",
 };
 

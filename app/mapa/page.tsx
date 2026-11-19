@@ -11,8 +11,8 @@ export default function MapaPage() {
   return (
     <main>
       <div className="wrap listhead">
-        <span className="eyebrow">Mapa · toda España</span>
-        <h1>Quién cuida de los perros cerca de ti, colabore o no con nosotros.</h1>
+        <h1 className="eyebrow">Mapa de protectoras · toda España</h1>
+        <p className="h1">Quién cuida de los perros cerca de ti, colabore o no con nosotros.</p>
         <p className="lead">Un mapa con las protectoras, refugios y centros municipales que trabajan con Pelos y Señales y también con los que no: todos con su enlace y su contacto. No somos intermediarios; somos un sitio donde encontrar información y crear lazos. Si conoces una entidad que falta, dínoslo.</p>
       </div>
       <MapaEntidades />

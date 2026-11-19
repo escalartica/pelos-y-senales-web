@@ -136,8 +136,8 @@ export default function Perdidos() {
   return (
     <>
       <div className="wrap listhead">
-        <span className="eyebrow">Perdidos y avistados</span>
-        <h1>Si se ha perdido, que se vea. Si lo has visto, que se sepa.</h1>
+        <h1 className="eyebrow">Perros perdidos y avistados</h1>
+        <p className="h1">Si se ha perdido, que se vea. Si lo has visto, que se sepa.</p>
         <p className="lead">Dos tablones y dos mapas que se hablan entre sí: el de los perros que alguien busca y el de los perros que alguien ha visto sueltos. Cuanto más cerca estén un punto y otro, antes vuelve a casa. Es gratis, sin registro, y la ubicación es lo que más ayuda.</p>
         <div className="avisos" aria-live="polite"><span className="p">{stats.p} perro{stats.p === 1 ? "" : "s"} que alguien busca</span><span className="a">{stats.a} avistado{stats.a === 1 ? "" : "s"} sin resolver</span><span className="h">{stats.h} ya en casa</span></div>
         {Tabs}

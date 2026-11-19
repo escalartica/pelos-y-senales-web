@@ -23,8 +23,8 @@ export default async function Perros() {
   return (
     <main>
       <div className="wrap listhead">
-        <span className="eyebrow">Perros en adopción</span>
-        <h1>Mira quién te espera.</h1>
+        <h1 className="eyebrow">Perros en adopción</h1>
+        <p className="h1">Mira quién te espera.</p>
         <p className="lead">Fichas autorizadas por su protectora, con estado y fecha de revisión. Filtra, guarda favoritos y escribe a la protectora del perro que te interese.</p>
       </div>
       <Suspense fallback={listaInicial}><PerrosExplorer /></Suspense>

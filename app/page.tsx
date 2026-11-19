@@ -30,8 +30,8 @@ export default async function Home() {
       <header className="hero" id="inicio">
         <div className="wrap">
           <div className="copy">
-            <span className="eyebrow">Del match a casa · España</span>
-            <h1>Del perro que espera al perro que <span className="i">ilusiona.</span></h1>
+            <h1 className="eyebrow">Perros en adopción · España</h1>
+            <p className="h1">Del perro que espera al perro que <span className="i">ilusiona.</span></p>
             <p className="lead">El «match» entre perros y familias, con la protectora al mando. Cuéntanos cómo vives en cuatro preguntas y te enseñamos, uno a uno, los perros que encajan contigo, fotografiados como son cuando están bien.</p>
             <div className="cta"><Link className="btn" href="/match">Haz match en un minuto <span className="ic">→</span></Link><Link className="btn ghost" href="/perros">Ver todos los perros</Link></div>
             <div className="trust">{DOGS.length > 0 && <span>{DOGS.length} perros en adopción</span>}<span>Fotos reales de cada perro</span><span>Fichas revisadas por su protectora</span><span>Sin registro para hacer match</span></div>

@@ -17,6 +17,10 @@ body{margin:0;background:var(--paper);color:var(--tinta);font-family:var(--f-bod
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
 h1,h2,h3{font-family:var(--f-display);font-variation-settings:var(--soft);font-weight:700;line-height:1.04;letter-spacing:-.01em;margin:0;text-wrap:balance}
 h1{font-size:clamp(42px,6vw,82px);font-weight:800}
+/* El <h1> real de portada, listado, mapa y perdidos es la etiqueta pequeña (lleva la palabra clave);
+   la frase grande es un <p class="h1"> con el mismo aspecto que tenía el h1. */
+.h1{font-family:var(--f-display);font-variation-settings:var(--soft);font-weight:800;line-height:1.04;letter-spacing:-.01em;margin:0;text-wrap:balance;font-size:clamp(42px,6vw,82px)}
+h1.eyebrow,.listhead h1.eyebrow{font-family:var(--f-body);font-variation-settings:normal;font-size:11px;font-weight:700;line-height:1.55;letter-spacing:.22em;text-wrap:wrap;margin:0 0 22px}
 h2{font-size:clamp(30px,4vw,54px)}
 h3{font-size:clamp(22px,2.2vw,28px);font-weight:800}
 p{margin:0}
@@ -61,7 +65,7 @@ a{color:inherit}
 .hero{padding-block:clamp(36px,5vw,84px) clamp(48px,6vw,96px);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,5vw,72px);align-items:center}
 .hero .copy{min-width:0}
-.hero h1 .i{font-style:italic;font-weight:900;color:var(--coral-ink)}
+.hero h1 .i,.hero .h1 .i{font-style:italic;font-weight:900;color:var(--coral-ink)}
 .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
 .hero .lead{margin-top:24px}
 .hero .trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-size:13px;font-weight:700;color:var(--ink-60)}
@@ -202,7 +206,7 @@ footer .copy{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 .grain{pointer-events:none;position:fixed;inset:0;z-index:70;opacity:.045;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>")}
 /* LISTADO */
 .listhead{padding-block:clamp(36px,5vw,64px) 0}
-.listhead h1{font-size:clamp(36px,5vw,64px)}
+.listhead h1,.listhead .h1{font-size:clamp(36px,5vw,64px)}
 .filters{position:sticky;top:calc(69px + env(safe-area-inset-top,0px));z-index:30;background:rgba(251,247,238,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-block:1px solid var(--ink-08);margin-top:26px}
 .filters .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-block:12px}
 .filters .f{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
